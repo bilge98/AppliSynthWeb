@@ -7,6 +7,7 @@
         <title><?=$page?></title>
     </head>
     <body>
-     <?php include($page.'.php'); ?> 
+        <?=$erreur?>
+        <?php include($page.'.php'); ?> 
     </body>
 </html>
