@@ -2,17 +2,17 @@
     logo
 </div>
 <div>
-    <form id="gestionConvention" method="POST" action="../Controller/OubliemdpController.php">
+    <form id="gestionConvention" method="POST" action="../Controller/MenugestionconventionController.php">
         <button type="submit" name="btnGestionConvention">Gestion des conventions</button>
     </form>
 </div>
 <div>
-    <form id="gestionFacture" method="POST" action="../Controller/OubliemdpController.php">
+    <form id="gestionFacture" method="POST" action="../Controller/MenugestionfactureController.php">
         <button type="submit" name="btnGestionFacture">Gestion des factures</button>
     </form>
 </div>
 <div>
-    <form id="deconnexio," method="POST" action="../Controller/FrontController.php">
+    <form id="deconnexion" method="POST" action="../Controller/FrontController.php">
         <button type="submit" name="btnDeconnexion">Déconnexion</button>
     </form>
 </div>

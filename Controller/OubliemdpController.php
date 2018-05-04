@@ -17,7 +17,7 @@
                 echo "reinitialiser";
                 //update du mdp dans la base
                 //création d'une DtoCompte puis mettre dans session
-                //header('Location: URL DE la page connecer');
+                //header('Location: URL DE la page connecter');
             }else{
                 $erreur = "Merci de renseigner un mot de passe";
             }
