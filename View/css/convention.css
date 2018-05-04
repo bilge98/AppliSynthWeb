@@ -1,0 +1,17 @@
+body {
+    font-family: "Lato",  opensans,  sans-serif;
+    font-weight: 200;
+    font-style: normal;
+    font-size: 1.0em;
+    letter-spacing: 0.07em;
+    background: #F5F5F5;
+    color: #2F4F4F;
+    min-width: 100%;
+    margin: 20;
+    padding: 10;
+}
+
+body a {
+	text-decoration: none;
+	color: #2F4F4F;
+}
