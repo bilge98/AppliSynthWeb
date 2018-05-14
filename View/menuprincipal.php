@@ -12,7 +12,7 @@
     </form>
 </div>
 <div>
-    <form id="deconnexio," method="POST" action="../Controller/FrontController.php">
+    <form id="deconnexion" method="POST" action="../Controller/FrontController.php">
         <button type="submit" name="btnDeconnexion">Déconnexion</button>
     </form>
 </div>
