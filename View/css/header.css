@@ -1,0 +1,26 @@
+nav {
+
+	background-color: #CACFD2;
+	padding : 20px;
+}
+
+h1{
+	font-size: 20px;
+}
+nav div a span {
+	color: red;
+}
+
+.menu {
+	justify-content: space-around;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    margin-top: 30px;
+
+}
+
+.menu li {
+	list-style: none;
+
+}
