@@ -8,7 +8,7 @@
 class DtoCompte{
     
     #attributs
-    private final $idCompte;
+    private $idCompte;
     private $UserName;
     private $Password;
     private $Admin;

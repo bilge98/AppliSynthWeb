@@ -5,7 +5,6 @@
                     05-2018 / AppliSynth - Junior Entreprise
     Classe DAO Compte*/
 
-require_once('../Model/DtoCompte.php');
 
 class DaoCompte{
     
@@ -16,34 +15,42 @@ class DaoCompte{
     private $Password;
     
     #constructeur
-    public function __construct($base, $hote, $UserName, $Password){
+    public function __construct($hote, $base, $UserName, $Password){
         try{
             $this->hote=$hote;
             $this->UserName=$UserName;
             $this->Password=$Password;
-            $this->bdd = new PDO('mysql:host='.$hote.';dbname='.base.';charset=utf8', $UserName, $Password);
+            $this->bdd = new PDO('mysql:host='.$hote.';dbname='.$base.';charset=utf8', $UserName, $Password);
         }catch (Exception $e){
             die('Erreur :' . $e->getMessage());
         }
     }
     
     #connect l'utilisateur à la session
-    public function connectUser($dtoUser){
+    public function connectUser($dtoCompte){
         $_SESSION['username'] = $dtoCompte->getUserName(); 
     }
     
     #ajoute un utilisateur à la table Compte
-    public function newCompte($compte){
+    public function newCompte($dtocompte){
+        try{
         
-        $requete = 'INSERT INTO compte(UserName,Password, Admin) values(:t_username,:t_password, :t_admin);';
-        $req = $this->bdd->prepare($requete);
-        $req->execute( array(
-            't_username' => $compte->getUserName(),
-            't_password' => $compte->getPassword(),
-            't_admin' => $compte->getAdmin()
-        ));
+        $requete = 'INSERT INTO compte(UserName,Password, Admin) VALUES(:t_username,:t_password, :t_admin);';
+        $stmt = $this->bdd->prepare($requete);
+            
+        if (!$stmt) print_r($this->bdd->errorInfo());
         
-        return true;
+        $res = $stmt->execute( array(
+            't_username' => $dtocompte->getUserName(),
+            't_password' => $dtocompte->getPassword(),
+            't_admin' => $dtocompte->getAdmin()
+       ));
+            
+        if (!$res) print_r($stmt->errorInfo());
+            
+        }catch (Exception $e){
+            die('Erreur :' . $e->getMessage());
+        }
     } 
     
     
