@@ -21,7 +21,7 @@ class DaoCompte{
             $this->hote=$hote;
             $this->UserName=$UserName;
             $this->Password=$Password;
-            $this->bdd = new PDO('mysql:host='.$hote.';dbname='.base.';charset=utf8', $UserName, $Password);
+            $this->bdd = new PDO('mysql:host='.$hote.';dbname='.$base.';charset=utf8', $UserName, $Password);
         }catch (Exception $e){
             die('Erreur :' . $e->getMessage());
         }
@@ -35,13 +35,21 @@ class DaoCompte{
     #ajoute un utilisateur à la table Compte
     public function newCompte($compte){
         
-        $requete = 'INSERT INTO compte(UserName,Password, Admin) values(:t_username,:t_password, :t_admin);';
+        $requete = 'INSERT INTO compte(UserName, Password, Admin) values(:t_username,:t_password, :t_admin);';
         $req = $this->bdd->prepare($requete);
         $req->execute( array(
             't_username' => $compte->getUserName(),
             't_password' => $compte->getPassword(),
             't_admin' => $compte->getAdmin()
         ));
+        
+        $requete = 'SELECT * FROM compte WHERE UserName=? ;';
+        $requete = $this->bdd->prepare($requete);
+        $requete->execute(array($DtoCompte->getIdCompte()));
+        
+        $donnes = $requete->fetch();
+        
+        $DtoCompte->setIdCompte($donnes['idCompte']);
         
         return true;
     } 
