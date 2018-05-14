@@ -7,7 +7,7 @@
     </form>
 </div>
 <div>
-    <form id="modifierEditerConvention" method="POST" action="../Controller/MenugestionconventionController.php">
+    <form id="modifierEditerConvention" method="POST" action="../Controller/ConsultermodifierediterconventionController.php">
         <button type="submit" name="btnModifierEditerConvention">Modifier/Editer convention</button>
     </form>
 </div>
