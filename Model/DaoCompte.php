@@ -33,21 +33,16 @@ class DaoCompte{
     }
     
     #ajoute un utilisateur à la table Compte
-    public function newCompte($compte){
+    public function newCompte($DtoCompte){
         
         $requete = 'INSERT INTO compte(UserName, Password, Admin) values(:t_username,:t_password, :t_admin);';
         $req = $this->bdd->prepare($requete);
         $req->execute( array(
-            't_username' => $compte->getUserName(),
-            't_password' => $compte->getPassword(),
-            't_admin' => $compte->getAdmin()
+            't_username' => $DtoCompte->getUserName(),
+            't_password' => $DtoCompte->getPassword(),
+            't_admin' => $DtoCompte->getAdmin()
         ));
         
-        $requete = 'SELECT * FROM compte WHERE UserName=? ;';
-        $requete = $this->bdd->prepare($requete);
-        $requete->execute(array($DtoCompte->getIdCompte()));
-        
-        $donnes = $requete->fetch();
         
         $DtoCompte->setIdCompte($donnes['idCompte']);
         
