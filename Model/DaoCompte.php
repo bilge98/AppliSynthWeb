@@ -28,7 +28,7 @@ class DaoCompte{
     
     #connect l'utilisateur à la session
     public function connectUser($dtoCompte){
-        $_SESSION['username'] = $dtoCompte->getUserName(); 
+        $_SESSION['DtoCompte'] = $dtoCompte; 
     }
     
     #ajoute un utilisateur à la table Compte
@@ -55,6 +55,7 @@ class DaoCompte{
     
     
     public function verifieCompte($UserName, $Password){
+        try{
         $requete = 'SELECT * FROM compte WHERE UserName=?;';
         $requete = $this->bdd->prepare($requete);
         $requete->execute(array($UserName));
@@ -64,6 +65,9 @@ class DaoCompte{
         if(password_verify($Password,$donnes['Password'])){
             $DtoCompte = new DtoCompte($donnes['UserName'],$donnes['Password'],$donnes['Admin']);
             return $DtoCompte;
+        
+        } }catch (Exception $e){
+            die('Erreur :' . $e->getMessage());
         }                
     }
     

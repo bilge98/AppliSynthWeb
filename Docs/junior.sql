@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  ven. 04 mai 2018 à 07:34
+-- Généré le :  lun. 14 mai 2018 à 15:47
 -- Version du serveur :  5.7.19
 -- Version de PHP :  5.6.31
 
@@ -31,13 +31,13 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `client`;
 CREATE TABLE IF NOT EXISTS `client` (
   `IdClient` int(11) NOT NULL AUTO_INCREMENT,
-  `NomClient` varchar(20) NOT NULL,
+  `NomClient` varchar(255) NOT NULL,
   `NumRue` int(11) NOT NULL,
-  `NomRue` varchar(50) NOT NULL,
-  `CP` varchar(50) NOT NULL,
-  `Mail` varchar(50) NOT NULL,
-  `Tel` varchar(50) NOT NULL,
-  `Siret` varchar(50) NOT NULL,
+  `NomRue` varchar(255) NOT NULL,
+  `CP` varchar(255) NOT NULL,
+  `Mail` varchar(255) NOT NULL,
+  `Tel` varchar(255) NOT NULL,
+  `Siret` varchar(255) NOT NULL,
   PRIMARY KEY (`IdClient`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -49,10 +49,11 @@ CREATE TABLE IF NOT EXISTS `client` (
 
 DROP TABLE IF EXISTS `compte`;
 CREATE TABLE IF NOT EXISTS `compte` (
-  `UserName` varchar(50) NOT NULL,
-  `Password` varchar(50) NOT NULL,
+  `idCompte` int(11) NOT NULL AUTO_INCREMENT,
+  `UserName` varchar(255) NOT NULL,
+  `Password` varchar(255) NOT NULL,
   `Admin` tinyint(1) NOT NULL,
-  PRIMARY KEY (`UserName`)
+  PRIMARY KEY (`idCompte`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -64,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `compte` (
 DROP TABLE IF EXISTS `convention`;
 CREATE TABLE IF NOT EXISTS `convention` (
   `NumConvention` int(11) NOT NULL AUTO_INCREMENT,
-  `NomProjet` varchar(50) NOT NULL,
+  `NomProjet` varchar(255) NOT NULL,
   `DateDebut` date NOT NULL,
   `DateFin` date NOT NULL,
   `MontantHT` double NOT NULL,
@@ -85,10 +86,10 @@ CREATE TABLE IF NOT EXISTS `convention` (
 DROP TABLE IF EXISTS `etudiant`;
 CREATE TABLE IF NOT EXISTS `etudiant` (
   `IdEtudiant` int(11) NOT NULL AUTO_INCREMENT,
-  `Nom` varchar(50) NOT NULL,
-  `Prenom` int(50) NOT NULL,
-  `Adresse` int(50) NOT NULL,
-  `NumSecu` varchar(50) NOT NULL,
+  `Nom` varchar(255) NOT NULL,
+  `Prenom` varchar(255) NOT NULL,
+  `Adresse` varchar(255) NOT NULL,
+  `NumSecu` varchar(255) NOT NULL,
   `DateNaiss` date NOT NULL,
   PRIMARY KEY (`IdEtudiant`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -118,7 +119,7 @@ CREATE TABLE IF NOT EXISTS `facture` (
 DROP TABLE IF EXISTS `tache`;
 CREATE TABLE IF NOT EXISTS `tache` (
   `NumTache` int(11) NOT NULL AUTO_INCREMENT,
-  `Intitule` varchar(50) NOT NULL,
+  `Intitule` varchar(255) NOT NULL,
   `Quantite` int(11) NOT NULL,
   `PrixHT` int(11) NOT NULL,
   PRIMARY KEY (`NumTache`)

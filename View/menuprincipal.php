@@ -11,6 +11,13 @@
         <button type="submit" name="btnGestionFacture">Gestion des factures</button>
     </form>
 </div>
+<? if($admin): ?>
+<div>
+    <form id="gestionUtilisateur" method="POST" action="../Controller/MenugestionutilisateurController.php">
+        <button type="submit" name="btnGestionUtilisateur">Gestion des utilisateurs</button>
+    </form>
+</div>
+<? endif; ?>
 <div>
     <form id="deconnexion" method="POST" action="../Controller/FrontController.php">
         <button type="submit" name="btnDeconnexion">Déconnexion</button>
