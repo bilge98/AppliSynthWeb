@@ -2,7 +2,7 @@
     logo
 </div>
 <div>
-    <form id="ajouterUtilisateur" method="POST" action="../Controller/MenugestionutilisateurController.php">
+    <form id="ajouterUtilisateur" method="POST" action="../Controller/AjouterutilisateurController.php">
         <button type="submit" name="btnAjouterUtilisateur">Ajouter utilisateur</button>
     </form>
 </div>

@@ -17,4 +17,5 @@
         header('Location: ./MenuprincipalController.php');
     }
 
+
     include("../View/layout.php");
