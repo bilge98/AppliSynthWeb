@@ -5,6 +5,7 @@
                     05-2018 / AppliSynth - Junior Entreprise
     Classe DAO Compte*/
 
+require_once('../Model/DtoCompte.php');
 
 class DaoCompte{
     
