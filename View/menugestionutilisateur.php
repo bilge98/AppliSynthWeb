@@ -7,12 +7,12 @@
     </form>
 </div>
 <div>
-    <form id="modifierUtilisateur" method="POST" action="../Controller/MenugestionutilisateurController.php">
+    <form id="modifierUtilisateur" method="POST" action="../Controller/ModifierutilisateurController.php">
         <button type="submit" name="btnModifierUtilisateur">Modifier utilisateur</button>
     </form>
 </div>
 <div>
-    <form id="supprimerUtilisateur" method="POST" action="../Controller/MenugestionutilisateurController.php">
+    <form id="supprimerUtilisateur" method="POST" action="../Controller/SupprimerutilisateurController.php">
         <button type="submit" name="btnSupprimerutilisateur">Supprimer utilisateur</button>
     </form>
 </div>

@@ -8,9 +8,3 @@
                 <button type="submit" name="btnConnexion">Connexion</button>
             </form>
         </div>
-        <div>
-            <form id="mdpOublier" method="POST" action="../Controller/OubliemdpController.php">
-                <button type="submit" name="btnOubliemdp">Mot de passe oublié</button>
-            </form>
-        </div>
- 
