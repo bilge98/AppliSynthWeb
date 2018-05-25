@@ -5,7 +5,6 @@
                     05-2018 / AppliSynth - Junior Entreprise
     Classe DAO Compte*/
 
-require_once('../Model/DtoCompte.php');
 
 class DaoCompte{
     
@@ -30,9 +29,11 @@ class DaoCompte{
     #connect l'utilisateur à la session
     public function connectUser($dtoCompte){
         $_SESSION['DtoCompte'] = $dtoCompte; 
-    }
+    }1 conflict  
+
     
     #ajoute un utilisateur à la table Compte
+
     public function newCompte($dtocompte){
         try{
             $requete = 'INSERT INTO compte(UserName,Password, Admin) VALUES(:t_username,:t_password, :t_admin);';
@@ -95,5 +96,5 @@ class DaoCompte{
             die('Erreur :' . $e->getMessage());
         }                
     }
-    
+      
 }
