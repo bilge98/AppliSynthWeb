@@ -4,7 +4,7 @@
     session_start();
     var_dump($_SESSION);
 
-    $page = "menuprincipal";
+    $page = "menugestionutilisateur";
     $erreur = "";
 
     #empeche l'utilisateur de charger cette page sans compte
@@ -12,7 +12,10 @@
         header('Location: ./FrontController.php');
     }
     
-    $dtoCompte = $_SESSION['DtoCompte'];
-    $admin = $dtoCompte->getAdmin();
-    var_dump($admin);
+    #empeche un utilisateur non admin de ce rendre sur le menu des utilisateurs
+    if(!$_SESSION['DtoCompte']->getAdmin()){
+        header('Location: ./MenuprincipalController.php');
+    }
+
+
     include("../View/layout.php");

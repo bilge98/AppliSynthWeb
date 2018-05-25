@@ -15,7 +15,7 @@ class DaoCompte{
     private $Password;
     
     #constructeur
-    public function __construct($base, $hote, $UserName, $Password){
+    public function __construct($hote, $base, $UserName, $Password){
         try{
             $this->hote=$hote;
             $this->UserName=$UserName;
@@ -27,40 +27,73 @@ class DaoCompte{
     }
     
     #connect l'utilisateur à la session
-    public function connectUser($dtoUser){
-        $_SESSION['username'] = $dtoCompte->getUserName(); 
-    }
+    public function connectUser($dtoCompte){
+        $_SESSION['DtoCompte'] = $dtoCompte; 
+    }1 conflict  
+
     
     #ajoute un utilisateur à la table Compte
-    public function newCompte($DtoCompte){
-        
-        $requete = 'INSERT INTO compte(UserName, Password, Admin) values(:t_username,:t_password, :t_admin);';
-        $req = $this->bdd->prepare($requete);
-        $req->execute( array(
-            't_username' => $DtoCompte->getUserName(),
-            't_password' => $DtoCompte->getPassword(),
-            't_admin' => $DtoCompte->getAdmin()
-        ));
-        
-        
-        $DtoCompte->setIdCompte($donnes['idCompte']);
-        
-        close($donnes);
-        
-        return true;
+
+    public function newCompte($dtocompte){
+        try{
+            $requete = 'INSERT INTO compte(UserName,Password, Admin) VALUES(:t_username,:t_password, :t_admin);';
+            $stmt = $this->bdd->prepare($requete);
+
+            if (!$stmt) print_r($this->bdd->errorInfo());
+
+            $res = $stmt->execute( array(
+                't_username' => $dtocompte->getUserName(),
+                't_password' => $dtocompte->getPassword(),
+                't_admin' => $dtocompte->getAdmin()
+           ));
+
+            if (!$res) print_r($stmt->errorInfo());
+
+        }catch (Exception $e){
+            die('Erreur :' . $e->getMessage());
+        }
     } 
     
     
     public function verifieCompte($UserName, $Password){
-        $requete = 'SELECT * FROM compte WHERE UserName=?;';
-        $requete = $this->bdd->prepare($requete);
-        $requete->execute(array($UserName));
+        try{
+            $requete = 'SELECT * FROM compte WHERE UserName=?;';
+            $requete = $this->bdd->prepare($requete);
+            $requete->execute(array($UserName));
+
+            $donnes = $requete->fetch();
+
+            if(password_verify($Password,$donnes['Password'])){
+                $DtoCompte = new DtoCompte($donnes['UserName'],$donnes['Password'],$donnes['Admin']);
+                return $DtoCompte;
+
+            } 
+        }catch (Exception $e){
+            die('Erreur :' . $e->getMessage());
+        }                
+    }
+    
+    public function modifierCompte($UserName, $Password){
+        try{
+            $requete = 'SELECT * FROM compte WHERE UserName=?;';
+            $requete = $this->bdd->prepare($requete);
+            $requete->execute(array($UserName));
+
+            $donnes = $requete->fetch();
+            
+            if($donnes['UserName']!=null){
+                $DtoCompte = new DtoCompte($donnes['UserName'],$Password,$donnes['Admin']);
+            
+                $requete = "UPDATE compte SET Password=? WHERE UserName=?";
         
-        $donnes = $requete->fetch();
-        
-        if(password_verify($Password,$donnes['Password'])){
-            $DtoCompte = new DtoCompte($donnes['UserName'],$donnes['Password'],$donnes['Admin']);
-            return $DtoCompte;
+                $req = $this->bdd->prepare($requete);
+                $req->execute(array($DtoCompte->getPassword(),$UserName));
+            
+                return $DtoCompte;
+            }
+
+        }catch (Exception $e){
+            die('Erreur :' . $e->getMessage());
         }                
     }
       
