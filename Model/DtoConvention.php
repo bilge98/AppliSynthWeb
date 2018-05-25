@@ -35,6 +35,20 @@ class DtoConvention{
         $this->Commentaire = $Commentaire;
     }
     
+    public function __construct($NomProjet, $DateDebut,
+                                $DateFin, $MontantHT, $MontantTTC, 
+                                $Acompte, $TVA, $Signature, $Commentaire){
+        $this->NomProjet = $NomProjet;
+        $this->DateDebut = $DateDebut;
+        $this->DateFin = $DateFin;
+        $this->MontantHT = $MontantHT;
+        $this->MontantTTC = $MontantTTC;
+        $this->Acompte = $Acompte;
+        $this->TVA = $TVA;
+        $this->Signature = $Signature;
+        $this->Commentaire = $Commentaire;
+    }
+    
     #getters
     public function getNumConvention(){return $this->NumConvention;}
     public function getNomProjet(){return $this->NomProjet;}
