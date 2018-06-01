@@ -1,6 +1,6 @@
 <div>
     <form id="rechercheConvention" method="POST" action="../Controller/ModifierediterconventionController.php">
-        <input id="numeroRue" type="number" placeholder="N°">
+        <input id="numeroConvention" type="number" placeholder="N°">
         <input id="nomConvention" type="text" placeholder="Nom">
         <button type="submit" name="btnRechercher">Rechercher</button>
     </form>
