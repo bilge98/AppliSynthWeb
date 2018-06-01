@@ -149,7 +149,7 @@ class DaoConvention
                 echo'<th>Commentaire</th>';
             echo'</tr>';
         
-        $requete = 'SELECT * FROM convention WHERE NomProjet='.$nomProjet';';
+        $requete = 'SELECT * FROM convention WHERE NomProjet='.$nomProjet.';';
         $reponse = $this->bdd->query($requete);
 
         while($data = $reponse->fetch()){
@@ -187,7 +187,7 @@ class DaoConvention
                 echo'<th>Commentaire</th>';
             echo'</tr>';
         
-        $requete = 'SELECT * FROM convention WHERE NomProjet='.$numConvention';';
+        $requete = 'SELECT * FROM convention WHERE NomProjet='.$numConvention.';';
         $reponse = $this->bdd->query($requete);
 
         while($data = $reponse->fetch()){
