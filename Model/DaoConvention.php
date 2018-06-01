@@ -90,7 +90,19 @@ class DaoConvention
             echo '<td>'.$data['TVA'].'</td>';
             echo '<td>'.$data['Signature'].'</td>';
             echo '<td>'.$data['Commentaire'].'</td>';
-            echo '<td><button name="button">Cliquez sur moi :)</button></td>';
+        
+            echo'<td><a href="ConsultermodifierediterconventionController.php?btn=Consulter&numConvention='.$data['NumConvention'].'>Consulter</a></td>';
+            echo'<td><a href="ConsultermodifierediterconventionController.php?btn=Modifer&numConvention='.$data['NumConvention'].'>Modifier</a></td>';
+            echo'<td><a href="ConsultermodifierediterconventionController.php?btn=Editer&numConvention='.$data['NumConvention'].'>Editer</a></td>';
+            
+            /*
+            echo '<form action="ConsultermodifierediterconventionController.php" method="GET">';
+            echo '<input type="submit" value='.$data['NumConvention'].'name="btnConsulter">Consulter</input></td>';
+            echo '<form action="ConsultermodifierediterconventionController.php" method="GET">';
+            echo '<input type="submit" value='.$data['NumConvention'].'name="btnModifier">Modifier</input></td>';
+            echo '<form action="ConsultermodifierediterconventionController.php" method="GET">';
+            echo '<input type="submit" value='.$data['NumConvention'].'name="btnEditer">Editer</input></td>';
+            */
         }
         $reponse->closeCursor();
         echo'</table>';
