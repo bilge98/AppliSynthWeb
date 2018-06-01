@@ -15,6 +15,6 @@
     }
     $daoConvention = new DaoConvention("localhost","junior","root","");
     $daoConvention->afficherTabConvention();
-    echo 'bonjour';
     
+
     include("../View/layout.php");
