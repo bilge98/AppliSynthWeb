@@ -26,7 +26,7 @@ class DaoClient{
         }
     }
     
-    //Ajoute un client à la bdd
+    //Ajoute/modifie un client à la bdd
     public function insertClient($DtoClient){
         
         $requete = 'INSERT INTO client(NomClient, NumRue, NomRue, CP, Mail, Tel, Siret) values(:t_NomClient, :t_NumRue, :t_NomRue, :t_CP, :t_Mail, :t_Tel, :t_Siret);';
@@ -50,6 +50,46 @@ class DaoClient{
         
         return true;
     } 
+    
+    //Affiche client par son Id
+    function afficherTabClientId($IdClient) {
+        echo'<table>';
+            echo'<tr>';
+                echo'<th>Id Client</th>';
+                echo'<th>Nom</th>';
+                echo'<th>Siret</th>';
+                echo'<th>Adresse : numéro Rue</th>';
+                echo'<th>Adresse : nom Rue</th>';
+                echo'<th>Code postal</th>';
+                echo'<th>Mail</th>';
+                echo'<th>Téléphone</th>';
+            echo'</tr>';
+        
+        $requete = 'SELECT * FROM client WHERE IdClient='.$IdClient.';';
+        $reponse = $this->bdd->query($requete);
+
+        while($data = $reponse->fetch()){
+                echo '<td>'.$data['IdClient'].'</td>';
+                echo '<td>'.$data['NomClient'].'</td>';
+                echo '<td>'.$data['Siret'].'</td>';
+                echo '<td>'.$data['NumRue'].'</td>';
+                echo '<td>'.$data['NomRue'].'</td>';
+                echo '<td>'.$data['MontantTTC'].'</td>';
+                echo '<td>'.$data['Acompte'].'</td>';
+                echo '<td>'.$data['TVA'].'</td>';
+                echo '<td>'.$data['Signature'].'</td>';
+                echo '<td>'.$data['Commentaire'].'</td>';
+        
+            echo'<tr>';    
+                echo'<td><a href="ConsultermodifierediterconventionController.php?btn=Consulter&numConvention='.$data['NumConvention'].'>Consulter</a></td>';
+                echo'<td><a href="ConsultermodifierediterconventionController.php?btn=Modifer&numConvention='.$data['NumConvention'].'>Modifier</a></td>';
+                echo'<td><a href="ConsultermodifierediterconventionController.php?btn=Editer&numConvention='.$data['NumConvention'].'>Editer</a></td>';
+            echo'</tr>';
+        }
+        $reponse->closeCursor();
+        echo'</table>';
+    }
+    
     
     //Getter
     public function getByIdClient($IdClient){
