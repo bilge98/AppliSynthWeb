@@ -196,7 +196,7 @@ class DaoConvention
 
         while($data = $reponse->fetch()){
             echo'<tr>';
-                 echo '<td>'.$data['NumConvention'].'</td>';
+                echo '<td>'.$data['NumConvention'].'</td>';
                 echo '<td>'.$data['NomProjet'].'</td>';
                 echo '<td>'.$data['DateDebut'].'</td>';
                 echo '<td>'.$data['DateFin'].'</td>';
