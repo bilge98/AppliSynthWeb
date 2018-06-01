@@ -75,11 +75,9 @@ class DaoConvention
                 echo'<th>Signature</th>';
                 echo'<th>Commentaire</th>';
             echo'</tr>';
-
    
         $requete = 'SELECT * FROM convention;';
         $reponse = $this->bdd->query($requete);
-
         while($data = $reponse->fetch()){
 
             echo'</tr>';
@@ -112,7 +110,44 @@ class DaoConvention
         echo'</table>';
         
     }
-    
+
+
+    public function updateTabConvention($UpdatedDtoConvention){
+        
+        echo'<table>';
+            echo'<tr>';
+                echo'<th>Numéro de convention</th>';
+                echo'<th>Nom du projet</th>';
+                echo'<th>Date début</th>';
+                echo'<th>Date fin</th>';
+                echo'<th>Montant HT</th>';
+                echo'<th>Montant TTC</th>';
+                echo'<th>Acompte</th>';
+                echo'<th>TVA</th>';
+                echo'<th>Signature</th>';
+                echo'<th>Commentaire</th>';
+            echo'</tr>';
+
+   
+        $requete = 'UPDATE convention SET NomProjet=:t_NomProjet, DateDebut=:t_DateDebut, DateFin=:t_DateFin, MontantHT=:t_MontantHT, Acompte=:t_Acompte, TVA=:t_TVA, Signature=:t_Signature, Commentaire=:t_Commentaire WHERE NumConvention=$DtoConvention->NumConvention;';
+
+        $reponse = $this->bdd->query($requete);
+        $reponse->execute( array(
+            't_NomProjet' => $DtoConvention->getNomProjet(),
+            't_DateDebut' => $DtoConvention->getDateDebut(),
+            't_DateFin' => $DtoConvention->getDateFin(),
+            't_MontantHT' => $DtoConvention->getMontantHT(),
+            't_MontantTTC' => $DtoConvention->getMontantTTC(),
+            't_Acompte' => $DtoConvention->getAcompte(),
+            't_TVA' => $DtoConvention->getTVA(),
+            't_Signature' => $DtoConvention->getSignature(),
+            't_Commentaire' => $DtoConvention->getCommentaire(),
+        ));
+       
+        $reponse->closeCursor();
+        echo'</table>';
+    }
+
     #getter
     
     #recupère une convention à partir de son numéro:
