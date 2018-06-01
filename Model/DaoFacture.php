@@ -50,28 +50,32 @@ class Facture{
         $req2->closecursor();
     }
     
-    public function afficherFacture(){
-        $requete = 'SELECT * FROM facture;';
-        $requete->execute(array(
-            't_NumFacture' => $DtoFacture->getNumFacture(),
-            't_DateFacture' => $DtoFacture->getDateFacture(),
-            't_MontantHT' => $DtoFacture->getMontantHT(),
-            't_MontantTTC' => $DtoFacture->getMontantTTC(),
-            't_Payee' => $DtoFacture->getPayee()));
+    public function afficherTabConvention(){
         
+        echo'<table>';
+            echo'<tr>';
+                echo'<th>Numéro de facture</th>';
+                echo'<th>Date de facture</th>';
+                echo'<th>Montant HT</th>';
+                echo'<th>Montant TTC</th>';
+                echo'<th>Facture payée</th>';
+            echo'</tr>';
 
-        //Affiche les données de la requête dans une table HTML  
-        while($donnees=$requete->fetch()) {
-            echo '<table width="80%" border="1">';
-                echo '<tr>';
-                    echo '<td>Numéro de facture : '.$donnees['t_NumFacture'].'</td>';
-                    echo '<td>\nDate d\'édition de la facture : '.$donnees['t_DateFacture'].'</td>';
-                    echo '<td>\nMontant HT : '.$donnees['t_MontantHT']).'</td>';
-                    echo '<td>\nMontant TTC : '.$donnees['t_MontantTTC']).'</td>';
-                    echo '<td>\nFacture payée ? : '.$donnees['t_Payee']).'</td>';
-                echo '</tr>';
-            echo '</table>';
+   
+        $requete = 'SELECT * FROM facture;';
+        $reponse = $this->bdd->query($requete);
+
+        while($data = $reponse->fetch()){
+            echo '<td>'.$data['NumFacture'].'</td>';
+            echo '<td>'.$data['DateFacture'].'</td>';
+            echo '<td>'.$data['MontantHT'].'</td>';
+            echo '<td>'.$data['MontantTTC'].'</td>';
+            echo '<td>'.$data['Payee'].'</td>';
+            echo '<td><button name="button">Accéder à ma facture</button></td>';
         }
+        $reponse->closeCursor();
+        echo'</table>';
+        
     }
     
     
