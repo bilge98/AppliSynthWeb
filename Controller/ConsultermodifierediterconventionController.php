@@ -15,23 +15,31 @@
     }
     $daoConvention = new DaoConvention("localhost","junior","root","");
 
-    if($_GET['btn']=="Consulter"){
-        if(isset($_GET['numConvention'])){
-            //$dtoConvention = $daoCompte->recupconvbynum();
-            //renvoi sur le formulaire remplie
+    if(isset($_GET['btn'])){
+        if($_GET['btn']=="Consulter"){
+            if(isset($_GET['numConvention'])){
+                //$dtoConvention = $daoCompte->recupconvbynum();
+                //renvoi sur le formulaire remplie
+            }
+        }
+    }
+    
+    if(isset($_GET['btn'])){
+        if($_GET['btn']=="Modifier"){
+            if(isset($_GET['numConvention'])){
+                //$dtoConvention = $daoCompte->recupconvbynum();
+                //renvoi sur le formulaire remplie + bouton modifier
+            }
         }
     }
 
-    if($_GET['btn']=="Modifier"){
-        if(isset($_GET['numConvention'])){
-            //$dtoConvention = $daoCompte->recupconvbynum();
-            //renvoi sur le formulaire remplie + bouton modifier
-        }
-    }
-    if($_GET['btn']=="Editer"){
-        if(isset($_GET['numConvention'])){
-            //$dtoConvention = $daoCompte->recupconvbynum();
-            //renvoi sur le formulaire remplie + bouton Editer
+        
+    if(isset($_GET['btn'])){
+        if($_GET['btn']=="Editer"){
+            if(isset($_GET['numConvention'])){
+                //$dtoConvention = $daoCompte->recupconvbynum();
+                //renvoi sur le formulaire remplie + bouton Editer
+            }
         }
     }
 
