@@ -72,6 +72,7 @@ class Facture{
             echo '<td>'.$data['MontantTTC'].'</td>';
             echo '<td>'.$data['Payee'].'</td>';
             echo '<td><button name="button">Accéder à ma facture</button></td>';
+            echo '<td><button name="button">Impr'
         }
         $reponse->closeCursor();
         echo'</table>';
