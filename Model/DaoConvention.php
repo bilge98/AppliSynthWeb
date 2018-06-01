@@ -6,7 +6,8 @@
     Classe DAO Convention*/
 
 
-class DaoConvention{
+class DaoConvention
+{
     
     #attributs
     private $bdd;
@@ -15,7 +16,7 @@ class DaoConvention{
     private $Password;
     
     #constructeur
-    public function __construct($base, $hote, $UserName, $Password){
+    public function __construct($hote,$base,$UserName, $Password){
         try{
             $this->hote=$hote;
             $this->UserName=$UserName;
@@ -59,22 +60,9 @@ class DaoConvention{
     
     
     public function afficherTabConvention(){
-        $requete = 'SELECT * FROM convention;';
-        
-        $requete->execute(array(
-            't_NumConvention' => $DtoConvention->getNumConvention(),
-            't_NomProjet' => $DtoConvention->getNomProjet(),
-            't_DateDebut' => $DtoConvention->getDateDebut(),
-            't_DateFin' => $DtoConvention->getDateFin(),
-            't_MontantHT' => $DtoConvention->getMontantHT(),
-            't_MontantTTC' => $DtoConvention->getMontantTTC(),
-            't_Acompte' => $DtoConvention->getAcompte(),
-            't_TVA' => $DtoConvention->getTVA(),
-            't_Signature' => $DtoConvention->getSignature(),
-            't_Commentaire' => $DtoConvention->getCommentaire()));
         
         echo'<table>';
-            echo'<tr>'
+            echo'<tr>';
                 echo'<th>Numéro de convention</th>';
                 echo'<th>Nom du projet</th>';
                 echo'<th>Date début</th>';
@@ -88,27 +76,26 @@ class DaoConvention{
             echo'</tr>';
 
    
-    $requete = 'SELECT * FROM convention;';
-    $reponse = $bdd->query($requete);
-    
-    while($data = $reponse->fetch()){
-        echo '<td>'.$data['NumConvention'].'</td>';
-        echo '<td>'.$data['NomProjet'].'</td>';
-        echo '<td>'.$data['DateDebut'].'</td>';
-        echo '<td>'.$data['DateFin'].'</td>';
-        echo '<td>'.$data['MontantHT'].'</td>';
-        echo '<td>'.$data['MontantTTC'].'</td>';
-        echo '<td>'.$data['Acompte'].'</td>';
-        echo '<td>'.$data['TVA'].'</td>';
-        echo '<td>'.$data['Signature'].'</td>';
-        echo '<td>'.$data['Commentaire'].'</td>';
-    }
-    
-    $reponse->closeCursor();
-        
-    echo'</table>';
-        
+        $requete = 'SELECT * FROM convention;';
+        $reponse = $this->bdd->query($requete);
 
+        while($data = $reponse->fetch()){
+            echo '<td>'.$data['NumConvention'].'</td>';
+            echo '<td>'.$data['NomProjet'].'</td>';
+            echo '<td>'.$data['DateDebut'].'</td>';
+            echo '<td>'.$data['DateFin'].'</td>';
+            echo '<td>'.$data['MontantHT'].'</td>';
+            echo '<td>'.$data['MontantTTC'].'</td>';
+            echo '<td>'.$data['Acompte'].'</td>';
+            echo '<td>'.$data['TVA'].'</td>';
+            echo '<td>'.$data['Signature'].'</td>';
+            echo '<td>'.$data['Commentaire'].'</td>';
+            echo '<td><button name="button">Cliquez sur moi :)</button></td>';
+        }
+        $reponse->closeCursor();
+        echo'</table>';
+        
+    }
     #getter
     public function getByNumConvention($NumConvention){
         $requete = 'SELECT * FROM convention where NumConvention=?;';

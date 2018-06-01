@@ -20,7 +20,7 @@ class DtoConvention{
     private $Commentaire;    
     
     #constructeur
-    public function __construct($NumConvention, $NomProjet, $DateDebut,
+   /* public function __construct($NumConvention, $NomProjet, $DateDebut,
                                 $DateFin, $MontantHT, $MontantTTC, 
                                 $Acompte, $TVA, $Signature, $Commentaire){
         $this->NumConvention = $NumConvention;
@@ -34,7 +34,7 @@ class DtoConvention{
         $this->Signature = $Signature;
         $this->Commentaire = $Commentaire;
     }
-    
+    */
     public function construct($NomProjet, $DateDebut,
                                 $DateFin, $MontantHT, $MontantTTC, 
                                 $Acompte, $TVA, $Signature, $Commentaire){

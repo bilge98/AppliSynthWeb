@@ -3,7 +3,7 @@
     <form id="supprimerUtilisateur" method="POST" action="../Controller/SupprimerutilisateurController.php">
         <label for="identifiant">Identifiant</label>
         <input type="user" name="username" placeholder="Identifiant">
-        <button type="submit" name="btnSupprimer">Modifier utilisateur</button>
+        <button type="submit" name="btnSupprimer">Supprimer utilisateur</button>
     </form>
 </div>
 <div>
