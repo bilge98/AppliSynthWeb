@@ -80,21 +80,23 @@ class DaoConvention
         $reponse = $this->bdd->query($requete);
 
         while($data = $reponse->fetch()){
-            echo '<td>'.$data['NumConvention'].'</td>';
-            echo '<td>'.$data['NomProjet'].'</td>';
-            echo '<td>'.$data['DateDebut'].'</td>';
-            echo '<td>'.$data['DateFin'].'</td>';
-            echo '<td>'.$data['MontantHT'].'</td>';
-            echo '<td>'.$data['MontantTTC'].'</td>';
-            echo '<td>'.$data['Acompte'].'</td>';
-            echo '<td>'.$data['TVA'].'</td>';
-            echo '<td>'.$data['Signature'].'</td>';
-            echo '<td>'.$data['Commentaire'].'</td>';
-        
-            echo'<td><a href="ConsultermodifierediterconventionController.php?btn=Consulter&numConvention='.$data['NumConvention'].'>Consulter</a></td>';
-            echo'<td><a href="ConsultermodifierediterconventionController.php?btn=Modifer&numConvention='.$data['NumConvention'].'>Modifier</a></td>';
-            echo'<td><a href="ConsultermodifierediterconventionController.php?btn=Editer&numConvention='.$data['NumConvention'].'>Editer</a></td>';
+            echo'</tr>';
+                echo '<td>'.$data['NumConvention'].'</td>';
+                echo '<td>'.$data['NomProjet'].'</td>';
+                echo '<td>'.$data['DateDebut'].'</td>';
+                echo '<td>'.$data['DateFin'].'</td>';
+                echo '<td>'.$data['MontantHT'].'</td>';
+                echo '<td>'.$data['MontantTTC'].'</td>';
+                echo '<td>'.$data['Acompte'].'</td>';
+                echo '<td>'.$data['TVA'].'</td>';
+                echo '<td>'.$data['Signature'].'</td>';
+                echo '<td>'.$data['Commentaire'].'</td>';
+
+                echo'<td><a href="ConsultermodifierediterconventionController.php?btn=Consulter&numConvention='.$data['NumConvention'].'">Consulter</a></td>';
+                echo'<td><a href="ConsultermodifierediterconventionController.php?btn=Modifer&numConvention='.$data['NumConvention'].'">Modifier</a></td>';
+                echo'<td><a href="ConsultermodifierediterconventionController.php?btn=Editer&numConvention='.$data['NumConvention'].'">Editer</a></td>';
             
+            echo'</tr>';
             /*
             echo '<form action="ConsultermodifierediterconventionController.php" method="GET">';
             echo '<input type="submit" value='.$data['NumConvention'].'name="btnConsulter">Consulter</input></td>';
