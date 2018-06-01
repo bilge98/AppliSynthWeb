@@ -50,7 +50,7 @@ class Facture{
         $req2->closecursor();
     }
     
-    public function afficherTabConvention(){
+    public function afficherTabFacture(){
         
         echo'<table>';
             echo'<tr>';
