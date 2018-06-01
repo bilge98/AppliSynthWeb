@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  lun. 14 mai 2018 à 15:47
+-- Généré le :  ven. 01 juin 2018 à 07:31
 -- Version du serveur :  5.7.19
 -- Version de PHP :  5.6.31
 
@@ -54,7 +54,15 @@ CREATE TABLE IF NOT EXISTS `compte` (
   `Password` varchar(255) NOT NULL,
   `Admin` tinyint(1) NOT NULL,
   PRIMARY KEY (`idCompte`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `compte`
+--
+
+INSERT INTO `compte` (`idCompte`, `UserName`, `Password`, `Admin`) VALUES
+(1, 'test1234', '$2y$10$2g7VteGzZ3/0H5muyFzStuvv0DUW5BGYg/oILNrH8l3lg.DkKgVSC', 1),
+(2, 'tayfun', '$2y$10$S5y3gkme.UfiwI2G.4keyuDItIyBSt.NflF8pfolOCBhQmqbRLFBK', 0);
 
 -- --------------------------------------------------------
 
@@ -75,7 +83,15 @@ CREATE TABLE IF NOT EXISTS `convention` (
   `Signature` tinyint(1) NOT NULL,
   `Commentaire` text NOT NULL,
   PRIMARY KEY (`NumConvention`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `convention`
+--
+
+INSERT INTO `convention` (`NumConvention`, `NomProjet`, `DateDebut`, `DateFin`, `MontantHT`, `MontantTTC`, `Acompte`, `TVA`, `Signature`, `Commentaire`) VALUES
+(1, 'test', '2018-06-04', '2018-06-12', 250, 250, 100, 20, 0, 'sdcwcqscqsxcqsc'),
+(2, 'tersdqs', '2018-06-12', '2018-06-27', 222, 222, 1, 2, 1, 'dssd');
 
 -- --------------------------------------------------------
 

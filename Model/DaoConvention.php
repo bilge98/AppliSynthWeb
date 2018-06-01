@@ -79,6 +79,7 @@ class DaoConvention
         $requete = 'SELECT * FROM convention;';
         $reponse = $this->bdd->query($requete);
         while($data = $reponse->fetch()){
+
             echo'</tr>';
                 echo '<td>'.$data['NumConvention'].'</td>';
                 echo '<td>'.$data['NomProjet'].'</td>';
@@ -90,6 +91,7 @@ class DaoConvention
                 echo '<td>'.$data['TVA'].'</td>';
                 echo '<td>'.$data['Signature'].'</td>';
                 echo '<td>'.$data['Commentaire'].'</td>';
+
                 echo'<td><a href="ConsultermodifierediterconventionController.php?btn=Consulter&numConvention='.$data['NumConvention'].'">Consulter</a></td>';
                 echo'<td><a href="ConsultermodifierediterconventionController.php?btn=Modifer&numConvention='.$data['NumConvention'].'">Modifier</a></td>';
                 echo'<td><a href="ConsultermodifierediterconventionController.php?btn=Editer&numConvention='.$data['NumConvention'].'">Editer</a></td>';
@@ -108,6 +110,7 @@ class DaoConvention
         echo'</table>';
         
     }
+
 
     public function updateTabConvention($UpdatedDtoConvention){
         
@@ -144,13 +147,16 @@ class DaoConvention
         $reponse->closeCursor();
         echo'</table>';
     }
+
     #getter
-    public function getByNumConvention($NumConvention){
+    
+    #recupère une convention à partir de son numéro:
+    public function getByNumConvention($numConvention){
         $requete = 'SELECT * FROM convention where NumConvention=?;';
         
         $req = $this->bdd->prepare($requete);
         
-        $req->execute(array($NumConvention));
+        $req->execute(array($numConvention));
         
         $data = $req->fetch();
             
@@ -160,4 +166,91 @@ class DaoConvention
         
         return $DtoConvention;
     }  
+    
+    #recupère une convention à partir d'un nom:
+    public function afficherTabConventionNom($nomProjet){
+        
+        echo'<table>';
+            echo'<tr>';
+                echo'<th>Numéro de convention</th>';
+                echo'<th>Nom du projet</th>';
+                echo'<th>Date début</th>';
+                echo'<th>Date fin</th>';
+                echo'<th>Montant HT</th>';
+                echo'<th>Montant TTC</th>';
+                echo'<th>Acompte</th>';
+                echo'<th>TVA</th>';
+                echo'<th>Signature</th>';
+                echo'<th>Commentaire</th>';
+            echo'</tr>';
+        
+        $requete = 'SELECT * FROM convention WHERE NomProjet="'.$nomProjet.'";';
+        $reponse = $this->bdd->query($requete);
+
+
+       while($data = $reponse->fetch()){
+
+            echo'</tr>';
+                echo '<td>'.$data['NumConvention'].'</td>';
+                echo '<td>'.$data['NomProjet'].'</td>';
+                echo '<td>'.$data['DateDebut'].'</td>';
+                echo '<td>'.$data['DateFin'].'</td>';
+                echo '<td>'.$data['MontantHT'].'</td>';
+                echo '<td>'.$data['MontantTTC'].'</td>';
+                echo '<td>'.$data['Acompte'].'</td>';
+                echo '<td>'.$data['TVA'].'</td>';
+                echo '<td>'.$data['Signature'].'</td>';
+                echo '<td>'.$data['Commentaire'].'</td>';
+
+                echo'<td><a href="ConsultermodifierediterconventionController.php?btn=Consulter&numConvention='.$data['NumConvention'].'">Consulter</a></td>';
+                echo'<td><a href="ConsultermodifierediterconventionController.php?btn=Modifer&numConvention='.$data['NumConvention'].'">Modifier</a></td>';
+                echo'<td><a href="ConsultermodifierediterconventionController.php?btn=Editer&numConvention='.$data['NumConvention'].'">Editer</a></td>';
+            
+            echo'</tr>';
+        }
+        $reponse->closeCursor();
+        echo'</table>';
+    }
+    
+    //Affiche la convention par son numéro
+    function afficherTabConventionNum ($numConvention) {
+        echo'<table>';
+                echo'<th>Numéro de convention</th>';
+                echo'<th>Nom du projet</th>';
+                echo'<th>Date début</th>';
+                echo'<th>Date fin</th>';
+                echo'<th>Montant HT</th>';
+                echo'<th>Montant TTC</th>';
+                echo'<th>Acompte</th>';
+                echo'<th>TVA</th>';
+                echo'<th>Signature</th>';
+                echo'<th>Commentaire</th>';
+        
+        $requete = 'SELECT * FROM convention WHERE NumConvention='.$numConvention.';';
+        $reponse = $this->bdd->query($requete);
+
+        while($data = $reponse->fetch()){
+
+            echo'<tr>';
+                echo '<td>'.$data['NumConvention'].'</td>';
+                echo '<td>'.$data['NomProjet'].'</td>';
+                echo '<td>'.$data['DateDebut'].'</td>';
+                echo '<td>'.$data['DateFin'].'</td>';
+                echo '<td>'.$data['MontantHT'].'</td>';
+                echo '<td>'.$data['MontantTTC'].'</td>';
+                echo '<td>'.$data['Acompte'].'</td>';
+                echo '<td>'.$data['TVA'].'</td>';
+                echo '<td>'.$data['Signature'].'</td>';
+                echo '<td>'.$data['Commentaire'].'</td>';
+
+                echo'<td><a href="ConsultermodifierediterconventionController.php?btn=Consulter&numConvention='.$data['NumConvention'].'">Consulter</a></td>';
+                echo'<td><a href="ConsultermodifierediterconventionController.php?btn=Modifer&numConvention='.$data['NumConvention'].'">Modifier</a></td>';
+                echo'<td><a href="ConsultermodifierediterconventionController.php?btn=Editer&numConvention='.$data['NumConvention'].'">Editer</a></td>';
+
+            echo'</tr>';
+        }
+        $reponse->closeCursor();
+        echo'</table>';
+    }
+    
 }
