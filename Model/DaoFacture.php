@@ -27,8 +27,7 @@ class Facture{
     }
     public function insertTabFacture($DtoFacture){
         //Requête d'insertion
-        $requete1 = 'INSERT INTO facture(DateFacture, MontantHT, MontantTTC,
-                             Payee) values(:t_NumFacture,:t_DateFacture,:t_MontantHT, :t_MontantTTC, :t_Payee);';
+        $requete1 = 'INSERT INTO facture(DateFacture, MontantHT, MontantTTC, Payee) values(:t_NumFacture,:t_DateFacture,:t_MontantHT, :t_MontantTTC, :t_Payee);';
         
         $req1 = $this->bdd->prepare($requete1);
         $req1->execute( array(
