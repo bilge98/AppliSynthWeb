@@ -8,6 +8,9 @@
 
     $page = "consultermodifierediterconvention";
     $erreur = "";
+    $affichage = 0;
+    $numConvention ="";
+    $nomConvention ="";
 
     #empeche l'utilisateur de charger cette page sans compte
     if(!isset($_SESSION['DtoCompte'])){
@@ -44,13 +47,17 @@
     }
 
     if(isset($_POST['btnRechercher'])){
-        if($_POST['numeroConvention'] && $_POST['numeroConvention']!=""){
-            //$daoCompte->afficheconvbynum(num);
+        var_dump($_POST);
+        if(isset($_POST['numeroConvention']) && $_POST['numeroConvention']!=""){
+            $affichage = 1;
+            $numConvention = $_POST['numeroConvention'];
         }
-        if($_POST['nomConvention'] && $_POST['nomConvention']!=""){
-            //$daoCompte->afficheconvbynom(nom);
+        if(isset($_POST['nomConvention']) && $_POST['nomConvention']!=""){
+            $affichage=2;
+            $nomConvention = $_POST['nomConvention'];
         }
     }
+
     
     
 
