@@ -149,24 +149,28 @@ class DaoConvention
                 echo'<th>Commentaire</th>';
             echo'</tr>';
         
-        $requete = 'SELECT * FROM convention WHERE NomProjet='.$nomProjet.';';
+        $requete = 'SELECT * FROM convention WHERE NomProjet="'.$nomProjet.'";';
         $reponse = $this->bdd->query($requete);
 
-        while($data = $reponse->fetch()){
-            echo '<td>'.$data['NumConvention'].'</td>';
-            echo '<td>'.$data['NomProjet'].'</td>';
-            echo '<td>'.$data['DateDebut'].'</td>';
-            echo '<td>'.$data['DateFin'].'</td>';
-            echo '<td>'.$data['MontantHT'].'</td>';
-            echo '<td>'.$data['MontantTTC'].'</td>';
-            echo '<td>'.$data['Acompte'].'</td>';
-            echo '<td>'.$data['TVA'].'</td>';
-            echo '<td>'.$data['Signature'].'</td>';
-            echo '<td>'.$data['Commentaire'].'</td>';
-        
-            echo'<td><a href="ConsultermodifierediterconventionController.php?btn=Consulter&numConvention='.$data['NumConvention'].'>Consulter</a></td>';
-            echo'<td><a href="ConsultermodifierediterconventionController.php?btn=Modifer&numConvention='.$data['NumConvention'].'>Modifier</a></td>';
-            echo'<td><a href="ConsultermodifierediterconventionController.php?btn=Editer&numConvention='.$data['NumConvention'].'>Editer</a></td>';
+       while($data = $reponse->fetch()){
+
+            echo'</tr>';
+                echo '<td>'.$data['NumConvention'].'</td>';
+                echo '<td>'.$data['NomProjet'].'</td>';
+                echo '<td>'.$data['DateDebut'].'</td>';
+                echo '<td>'.$data['DateFin'].'</td>';
+                echo '<td>'.$data['MontantHT'].'</td>';
+                echo '<td>'.$data['MontantTTC'].'</td>';
+                echo '<td>'.$data['Acompte'].'</td>';
+                echo '<td>'.$data['TVA'].'</td>';
+                echo '<td>'.$data['Signature'].'</td>';
+                echo '<td>'.$data['Commentaire'].'</td>';
+
+                echo'<td><a href="ConsultermodifierediterconventionController.php?btn=Consulter&numConvention='.$data['NumConvention'].'">Consulter</a></td>';
+                echo'<td><a href="ConsultermodifierediterconventionController.php?btn=Modifer&numConvention='.$data['NumConvention'].'">Modifier</a></td>';
+                echo'<td><a href="ConsultermodifierediterconventionController.php?btn=Editer&numConvention='.$data['NumConvention'].'">Editer</a></td>';
+            
+            echo'</tr>';
         }
         $reponse->closeCursor();
         echo'</table>';
@@ -187,24 +191,27 @@ class DaoConvention
                 echo'<th>Commentaire</th>';
             echo'</tr>';
         
-        $requete = 'SELECT * FROM convention WHERE NomProjet='.$numConvention.';';
+        $requete = 'SELECT * FROM convention WHERE NumConvention='.$numConvention.';';
         $reponse = $this->bdd->query($requete);
 
         while($data = $reponse->fetch()){
-            echo '<td>'.$data['NumConvention'].'</td>';
-            echo '<td>'.$data['NomProjet'].'</td>';
-            echo '<td>'.$data['DateDebut'].'</td>';
-            echo '<td>'.$data['DateFin'].'</td>';
-            echo '<td>'.$data['MontantHT'].'</td>';
-            echo '<td>'.$data['MontantTTC'].'</td>';
-            echo '<td>'.$data['Acompte'].'</td>';
-            echo '<td>'.$data['TVA'].'</td>';
-            echo '<td>'.$data['Signature'].'</td>';
-            echo '<td>'.$data['Commentaire'].'</td>';
-        
-            echo'<td><a href="ConsultermodifierediterconventionController.php?btn=Consulter&numConvention='.$data['NumConvention'].'>Consulter</a></td>';
-            echo'<td><a href="ConsultermodifierediterconventionController.php?btn=Modifer&numConvention='.$data['NumConvention'].'>Modifier</a></td>';
-            echo'<td><a href="ConsultermodifierediterconventionController.php?btn=Editer&numConvention='.$data['NumConvention'].'>Editer</a></td>';
+            echo'<tr>';
+                 echo '<td>'.$data['NumConvention'].'</td>';
+                echo '<td>'.$data['NomProjet'].'</td>';
+                echo '<td>'.$data['DateDebut'].'</td>';
+                echo '<td>'.$data['DateFin'].'</td>';
+                echo '<td>'.$data['MontantHT'].'</td>';
+                echo '<td>'.$data['MontantTTC'].'</td>';
+                echo '<td>'.$data['Acompte'].'</td>';
+                echo '<td>'.$data['TVA'].'</td>';
+                echo '<td>'.$data['Signature'].'</td>';
+                echo '<td>'.$data['Commentaire'].'</td>';
+
+                echo'<td><a href="ConsultermodifierediterconventionController.php?btn=Consulter&numConvention='.$data['NumConvention'].'">Consulter</a></td>';
+                echo'<td><a href="ConsultermodifierediterconventionController.php?btn=Modifer&numConvention='.$data['NumConvention'].'">Modifier</a></td>';
+                echo'<td><a href="ConsultermodifierediterconventionController.php?btn=Editer&numConvention='.$data['NumConvention'].'">Editer</a></td>';
+            
+            echo'</tr>';
         }
         $reponse->closeCursor();
         echo'</table>';
