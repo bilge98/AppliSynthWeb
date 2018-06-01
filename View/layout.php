@@ -15,7 +15,7 @@
     </head>
     <body>
         <?=$erreur?>
-        <?php include('nav.html'); ?> 
+        <?php include('nav.php'); ?> 
         <?php include($page.'.php'); ?> 
     </body>
 </html>
