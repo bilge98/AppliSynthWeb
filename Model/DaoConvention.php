@@ -27,6 +27,7 @@ class DaoConvention
         }
     }
     
+    //Fonction qui insere une nouvelle convention dans la BDD:
     public function insertTabConvention($DtoConvention){
         
         $requete = 'INSERT INTO convention(NomProjet, DateDebut, DateFin, MontantHT,
@@ -58,8 +59,57 @@ class DaoConvention
         $req2->closecursor();
     }
     
-    
+    #Fonction qui affiche la liste des conventions dans laa BDD:
     public function afficherTabConvention(){
+        
+        echo'<table>';
+            echo'<tr>';
+                echo'<th>Numéro de convention</th>';
+                echo'<th>Nom du projet</th>';
+                echo'<th>Date début</th>';
+                echo'<th>Date fin</th>';
+                echo'<th>Montant HT</th>';
+                echo'<th>Montant TTC</th>';
+                echo'<th>Acompte</th>';
+                echo'<th>TVA</th>';
+                echo'<th>Signature</th>';
+                echo'<th>Commentaire</th>';
+            echo'</tr>';
+   
+        $requete = 'SELECT * FROM convention;';
+        $reponse = $this->bdd->query($requete);
+        while($data = $reponse->fetch()){
+            echo'</tr>';
+                echo '<td>'.$data['NumConvention'].'</td>';
+                echo '<td>'.$data['NomProjet'].'</td>';
+                echo '<td>'.$data['DateDebut'].'</td>';
+                echo '<td>'.$data['DateFin'].'</td>';
+                echo '<td>'.$data['MontantHT'].'</td>';
+                echo '<td>'.$data['MontantTTC'].'</td>';
+                echo '<td>'.$data['Acompte'].'</td>';
+                echo '<td>'.$data['TVA'].'</td>';
+                echo '<td>'.$data['Signature'].'</td>';
+                echo '<td>'.$data['Commentaire'].'</td>';
+                echo'<td><a href="ConsultermodifierediterconventionController.php?btn=Consulter&numConvention='.$data['NumConvention'].'">Consulter</a></td>';
+                echo'<td><a href="ConsultermodifierediterconventionController.php?btn=Modifer&numConvention='.$data['NumConvention'].'">Modifier</a></td>';
+                echo'<td><a href="ConsultermodifierediterconventionController.php?btn=Editer&numConvention='.$data['NumConvention'].'">Editer</a></td>';
+            
+            echo'</tr>';
+            /*
+            echo '<form action="ConsultermodifierediterconventionController.php" method="GET">';
+            echo '<input type="submit" value='.$data['NumConvention'].'name="btnConsulter">Consulter</input></td>';
+            echo '<form action="ConsultermodifierediterconventionController.php" method="GET">';
+            echo '<input type="submit" value='.$data['NumConvention'].'name="btnModifier">Modifier</input></td>';
+            echo '<form action="ConsultermodifierediterconventionController.php" method="GET">';
+            echo '<input type="submit" value='.$data['NumConvention'].'name="btnEditer">Editer</input></td>';
+            */
+        }
+        $reponse->closeCursor();
+        echo'</table>';
+        
+    }
+
+    public function updateTabConvention($UpdatedDtoConvention){
         
         echo'<table>';
             echo'<tr>';
@@ -76,25 +126,23 @@ class DaoConvention
             echo'</tr>';
 
    
-        $requete = 'SELECT * FROM convention;';
-        $reponse = $this->bdd->query($requete);
+        $requete = 'UPDATE convention SET NomProjet=:t_NomProjet, DateDebut=:t_DateDebut, DateFin=:t_DateFin, MontantHT=:t_MontantHT, Acompte=:t_Acompte, TVA=:t_TVA, Signature=:t_Signature, Commentaire=:t_Commentaire WHERE NumConvention=$DtoConvention->NumConvention;';
 
-        while($data = $reponse->fetch()){
-            echo '<td>'.$data['NumConvention'].'</td>';
-            echo '<td>'.$data['NomProjet'].'</td>';
-            echo '<td>'.$data['DateDebut'].'</td>';
-            echo '<td>'.$data['DateFin'].'</td>';
-            echo '<td>'.$data['MontantHT'].'</td>';
-            echo '<td>'.$data['MontantTTC'].'</td>';
-            echo '<td>'.$data['Acompte'].'</td>';
-            echo '<td>'.$data['TVA'].'</td>';
-            echo '<td>'.$data['Signature'].'</td>';
-            echo '<td>'.$data['Commentaire'].'</td>';
-            echo '<td><button name="button">Cliquez sur moi :)</button></td>';
-        }
+        $reponse = $this->bdd->query($requete);
+        $reponse->execute( array(
+            't_NomProjet' => $DtoConvention->getNomProjet(),
+            't_DateDebut' => $DtoConvention->getDateDebut(),
+            't_DateFin' => $DtoConvention->getDateFin(),
+            't_MontantHT' => $DtoConvention->getMontantHT(),
+            't_MontantTTC' => $DtoConvention->getMontantTTC(),
+            't_Acompte' => $DtoConvention->getAcompte(),
+            't_TVA' => $DtoConvention->getTVA(),
+            't_Signature' => $DtoConvention->getSignature(),
+            't_Commentaire' => $DtoConvention->getCommentaire(),
+        ));
+       
         $reponse->closeCursor();
         echo'</table>';
-        
     }
     #getter
     public function getByNumConvention($NumConvention){
