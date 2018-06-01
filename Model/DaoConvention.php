@@ -59,7 +59,7 @@ class DaoConvention
         $req2->closecursor();
     }
     
-    #Fonction qui affiche la liste des conventions dans laa BDD:
+    //Fonction qui affiche la liste des conventions dans laa BDD:
     public function afficherTabConvention(){
         
         echo'<table>';
