@@ -13,8 +13,8 @@
     if(!isset($_SESSION['DtoCompte'])){
         header('Location: ./FrontController.php');
     }
+
     $daoConvention = new DaoConvention("localhost","junior","root","");
     $daoConvention->afficherTabConvention();
-    echo 'bonjour';
     
     include("../View/layout.php");
