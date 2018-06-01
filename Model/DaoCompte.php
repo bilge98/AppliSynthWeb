@@ -29,7 +29,7 @@ class DaoCompte{
     #connect l'utilisateur à la session
     public function connectUser($dtoCompte){
         $_SESSION['DtoCompte'] = $dtoCompte; 
-    }1 conflict  
+    }
 
     
     #ajoute un utilisateur à la table Compte

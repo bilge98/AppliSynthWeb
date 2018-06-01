@@ -1,8 +1,11 @@
 <?php
 
+    require_once('../model/DaoConvention.php');
+    require_once('../model/DtoConvention.php');
+
     session_start();
     var_dump($_SESSION);
-
+    
     $page = "menugestionconvention";
     $erreur = "";
 
@@ -14,5 +17,10 @@
     if(isset($_POST['btnModifierEditerConvention'])){
         $page = "consultermodifierediterconvention";
     }
+
+
+    $daoConvention = new DaoConvention('junior','localhost','root','');
+    $dtoConvention = $daoConvention->afficherTabConvention();
+    
 
     include("../View/layout.php");
