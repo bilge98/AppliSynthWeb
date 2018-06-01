@@ -1,4 +1,3 @@
-
 <div>
     <form id="ajouterUtilisateur" method="POST" action="../Controller/AjouterutilisateurController.php">
         <label for="identifiant">Identifiant</label>
