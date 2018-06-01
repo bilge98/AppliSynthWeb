@@ -1,8 +1,8 @@
 <?php
-
+    require_once('../model/DaoCompte.php');
+    require_once('../model/DtoCompte.php');
     require_once('../model/DaoConvention.php');
     require_once('../model/DtoConvention.php');
-
     session_start();
     var_dump($_SESSION);
     
@@ -18,9 +18,8 @@
         $page = "consultermodifierediterconvention";
     }
 
-
-    $daoConvention = new DaoConvention('junior','localhost','root','');
-    $dtoConvention = $daoConvention->afficherTabConvention();
     
+
+   
 
     include("../View/layout.php");

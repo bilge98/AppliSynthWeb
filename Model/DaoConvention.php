@@ -6,7 +6,8 @@
     Classe DAO Convention*/
 
 
-class DaoConvention{
+class DaoConvention
+{
     
     #attributs
     private $bdd;

@@ -96,5 +96,28 @@ class DaoCompte{
             die('Erreur :' . $e->getMessage());
         }                
     }
+    
+    public function supprimerCompte($UserName){
+        try{
+            $requete = 'SELECT * FROM compte WHERE UserName=?;';
+            $requete = $this->bdd->prepare($requete);
+            $requete->execute(array($UserName));
+
+            $donnes = $requete->fetch();
+            
+            
+            if($donnes['UserName']!=null){
+                $requete = 'DELETE FROM compte WHERE UserName=?;';
+                $requete = $this->bdd->prepare($requete);
+                $requete->execute(array($UserName));
+            
+                return true;
+            }
+            return false;
+
+        }catch (Exception $e){
+            die('Erreur :' . $e->getMessage());
+        }                
+    }
       
 }
