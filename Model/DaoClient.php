@@ -51,50 +51,6 @@ class DaoClient{
         return true;
     } 
     
-    //Fonction qui affiche la liste des clients dans laa BDD:
-    public function afficherTabClients(){
-        
-        echo'<table>';
-            echo'<tr>';
-        
-        NomClient, NumRue, NomRue, CP, Mail, Tel, Siret) values(:t_NomClient, :t_NumRue, :t_NomRue, :t_CP, :t_Mail, :t_Tel, :t_Siret
-                echo'<th>Nom</th>';
-                echo'<th>Adresse</th>';
-                echo'<th>Code Postal</th>';
-                echo'<th>E-mail</th>';
-                echo'<th>Montant HT</th>';
-                echo'<th>Montant TTC</th>';
-                echo'<th>Acompte</th>';
-                echo'<th>TVA</th>';
-                echo'<th>Signature</th>';
-                echo'<th>Commentaire</th>';
-            echo'</tr>';
-
-   
-        $requete = 'SELECT * FROM convention;';
-        $reponse = $this->bdd->query($requete);
-
-        while($data = $reponse->fetch()){
-            echo '<td>'.$data['NumConvention'].'</td>';
-            echo '<td>'.$data['NomProjet'].'</td>';
-            echo '<td>'.$data['DateDebut'].'</td>';
-            echo '<td>'.$data['DateFin'].'</td>';
-            echo '<td>'.$data['MontantHT'].'</td>';
-            echo '<td>'.$data['MontantTTC'].'</td>';
-            echo '<td>'.$data['Acompte'].'</td>';
-            echo '<td>'.$data['TVA'].'</td>';
-            echo '<td>'.$data['Signature'].'</td>';
-            echo '<td>'.$data['Commentaire'].'</td>';
-        
-            echo'<td><a href="ConsultermodifierediterconventionController.php?btn=Consulter&numConvention='.$data['NumConvention'].'>Consulter</a></td>';
-            echo'<td><a href="ConsultermodifierediterconventionController.php?btn=Modifer&numConvention='.$data['NumConvention'].'>Modifier</a></td>';
-            echo'<td><a href="ConsultermodifierediterconventionController.php?btn=Editer&numConvention='.$data['NumConvention'].'>Editer</a></td>';
-        }
-        $reponse->closeCursor();
-        echo'</table>';
-        
-    }
-    
     //Getter
     public function getByIdClient($IdClient){
         $requete = 'SELECT * FROM client where IdClient=?;';
