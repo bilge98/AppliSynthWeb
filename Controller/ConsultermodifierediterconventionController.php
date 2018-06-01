@@ -51,7 +51,7 @@
             //$daoCompte->afficheconvbynom(nom);
         }
     }
-    $daoConvention->afficherTabConvention();
+    
     
 
 
