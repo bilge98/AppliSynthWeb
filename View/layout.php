@@ -3,11 +3,19 @@
 <html lang="fr">
     <head>
         <meta charset="utf-8" />
-        <link rel="stylesheet" href="../style.css" />
-        <title><?=$page?></title>
+        
+        <link rel="stylesheet" href="./css/header.css">
+        <link rel="stylesheet" href="./css/convention.css">
+        
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        
+        <title>Junior Entreprise - <?=$page?></title>
     </head>
     <body>
         <?=$erreur?>
+        <?php include('nav.html'); ?> 
         <?php include($page.'.php'); ?> 
     </body>
 </html>

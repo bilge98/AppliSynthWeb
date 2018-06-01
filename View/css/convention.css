@@ -1,3 +1,4 @@
+
 body {
     font-family: "Lato",  opensans,  sans-serif;
     font-weight: 200;
@@ -7,15 +8,30 @@ body {
     background: #F5F5F5;
     color: #2F4F4F;
     min-width: 100%;
-    margin: 20;
-    padding: 10;
+
 }
 
 body a {
 	text-decoration: none;
 	color: #2F4F4F;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+
+}
+
+h2 {
+    color : red;
+    padding: 20px;
+    padding-bottom: 0px;
+}
+
+h3 {
+     line-height: 50px;
 }
 
 #convention {
+    margin : 20px;
     justify-content: flex-start;
-    text-align: center;
+    display: inline-block;
+}
