@@ -14,5 +14,5 @@
     
     $dtoCompte = $_SESSION['DtoCompte'];
     $admin = $dtoCompte->getAdmin();
-
+    var_dump($admin);
     include("../View/layout.php");
