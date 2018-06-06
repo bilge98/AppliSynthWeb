@@ -47,7 +47,39 @@
         }
     }
 
-    #gere la creation des collaborateurs dans la bdd
     
+    #gere les collaborateur de la convention
+    if(isset($_POST['collaborateur1']) && $_POST['collaborateur1']!=""){
+        //cherche l'etudiant dans la bdd et crée la dto associé arraylist
+        $cpt=2;
+        while(!empty($_POST['collaborateur'.$cpt] && $_POST['collaborateur'.$cpt]!="")){
+            //cherche l'etudiant dans la bdd et crée la dto associé
+        }
+    }
+
+    #gere les taches de la convention
+    if(isset($_POST['intituleTache1']) && $_POST['intituleTache1']!=""){
+        if(isset($_POST['quantite1']) && $_POST['quantite1']!=""){
+            if(isset($_POST['prixHT1']) && $_POST['prixHT1']!=""){
+                //crée une DTO tache
+                $cpt=2;
+                while(!empty($_POST['intituleTache'.$cpt] && $_POST['intituleTache'.$cpt]!="")){
+                    if(!empty($_POST['quantite'.$cpt] && $_POST['quantite'.$cpt]!="")){
+                        if(!empty($_POST['prixHT'.$cpt] && $_POST['prixHT'.$cpt]!="")){
+                            //crée des DTO tache
+                        }
+                    }
+                }              
+            }
+        }
+    }
+
+  
+
+    
+
+    
+
+    include("../View/layout.php");
 
     
