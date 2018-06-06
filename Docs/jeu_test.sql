@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  ven. 01 juin 2018 à 07:31
+-- Généré le :  mer. 06 juin 2018 à 09:10
 -- Version du serveur :  5.7.19
--- Version de PHP :  5.6.31
+-- Version de PHP :  7.1.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,6 +25,33 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `affectation`
+--
+
+DROP TABLE IF EXISTS `affectation`;
+CREATE TABLE IF NOT EXISTS `affectation` (
+  `NumAffectation` int(11) NOT NULL AUTO_INCREMENT,
+  `IdEtudiant` int(11) NOT NULL,
+  `NumConvention` int(11) NOT NULL,
+  PRIMARY KEY (`NumAffectation`)
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `affectation`
+--
+
+INSERT INTO `affectation` (`NumAffectation`, `IdEtudiant`, `NumConvention`) VALUES
+(1, 1, 1),
+(2, 1, 2),
+(3, 2, 1),
+(4, 3, 1),
+(5, 3, 2),
+(6, 3, 3),
+(7, 2, 3);
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `client`
 --
 
@@ -37,9 +64,17 @@ CREATE TABLE IF NOT EXISTS `client` (
   `CP` varchar(255) NOT NULL,
   `Mail` varchar(255) NOT NULL,
   `Tel` varchar(255) NOT NULL,
-  `Siret` varchar(255) NOT NULL,
+  `Siret` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`IdClient`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `client`
+--
+
+INSERT INTO `client` (`IdClient`, `NomClient`, `NumRue`, `NomRue`, `CP`, `Mail`, `Tel`, `Siret`) VALUES
+(1, 'TechInfo SA', 62, 'Ru de Vizay, DARDILLY', '69230', 'test1@gamil.com', '0400252525', '19691774400019'),
+(2, 'IUT Lyon 1', 90, 'Rue de la Technologie', '69100, VILLEURBANNE', 'test2@gmail.com', '0478000000', '19691774400019');
 
 -- --------------------------------------------------------
 
@@ -74,6 +109,7 @@ DROP TABLE IF EXISTS `convention`;
 CREATE TABLE IF NOT EXISTS `convention` (
   `NumConvention` int(11) NOT NULL AUTO_INCREMENT,
   `NomProjet` varchar(255) NOT NULL,
+  `IdClient` int(11) NOT NULL,
   `DateDebut` date NOT NULL,
   `DateFin` date NOT NULL,
   `MontantHT` double NOT NULL,
@@ -83,15 +119,16 @@ CREATE TABLE IF NOT EXISTS `convention` (
   `Signature` tinyint(1) NOT NULL,
   `Commentaire` text NOT NULL,
   PRIMARY KEY (`NumConvention`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `convention`
 --
 
-INSERT INTO `convention` (`NumConvention`, `NomProjet`, `DateDebut`, `DateFin`, `MontantHT`, `MontantTTC`, `Acompte`, `TVA`, `Signature`, `Commentaire`) VALUES
-(1, 'test', '2018-06-04', '2018-06-12', 250, 250, 100, 20, 0, 'sdcwcqscqsxcqsc'),
-(2, 'tersdqs', '2018-06-12', '2018-06-27', 222, 222, 1, 2, 1, 'dssd');
+INSERT INTO `convention` (`NumConvention`, `NomProjet`, `IdClient`, `DateDebut`, `DateFin`, `MontantHT`, `MontantTTC`, `Acompte`, `TVA`, `Signature`, `Commentaire`) VALUES
+(1, 'Projet1', 1, '2018-06-04', '2018-06-12', 4500, 5400, 2200, 20, 0, 'Ceci est un test'),
+(2, 'Projet2', 2, '2018-06-12', '2018-06-27', 2000, 2400, 1000, 20, 1, 'Ceci est un nouveau test '),
+(3, 'Projet3', 1, '2016-05-01', '2018-06-01', 1300, 1560, 600, 20, 1, 'ceci est encore un test');
 
 -- --------------------------------------------------------
 
@@ -108,7 +145,16 @@ CREATE TABLE IF NOT EXISTS `etudiant` (
   `NumSecu` varchar(255) NOT NULL,
   `DateNaiss` date NOT NULL,
   PRIMARY KEY (`IdEtudiant`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `etudiant`
+--
+
+INSERT INTO `etudiant` (`IdEtudiant`, `Nom`, `Prenom`, `Adresse`, `NumSecu`, `DateNaiss`) VALUES
+(1, 'OZTURK', 'Tayfun', '1 Rue du test, 69000 LYON', '123456789101112', '1998-06-07'),
+(2, 'EKINCI', 'Bilge', '1 Rue du Test, 69000 LYON', '1234567891011', '1999-06-06'),
+(3, 'FRILLICI', 'Julien', '1 Rue du Test, 69000 LYON', '1234567891011', '1982-06-06');
 
 -- --------------------------------------------------------
 
@@ -124,7 +170,16 @@ CREATE TABLE IF NOT EXISTS `facture` (
   `MontantTTC` double NOT NULL,
   `Payee` tinyint(1) NOT NULL,
   PRIMARY KEY (`NumFacture`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `facture`
+--
+
+INSERT INTO `facture` (`NumFacture`, `DateFacture`, `MontantHT`, `MontantTTC`, `Payee`) VALUES
+(1, '2018-06-06', 2000, 2200, 0),
+(2, '2018-04-09', 4500, 5400, 1),
+(3, '2018-06-02', 1300, 1560, 1);
 
 -- --------------------------------------------------------
 
@@ -135,11 +190,21 @@ CREATE TABLE IF NOT EXISTS `facture` (
 DROP TABLE IF EXISTS `tache`;
 CREATE TABLE IF NOT EXISTS `tache` (
   `NumTache` int(11) NOT NULL AUTO_INCREMENT,
+  `NumConvention` int(11) NOT NULL,
   `Intitule` varchar(255) NOT NULL,
   `Quantite` int(11) NOT NULL,
   `PrixHT` int(11) NOT NULL,
   PRIMARY KEY (`NumTache`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `tache`
+--
+
+INSERT INTO `tache` (`NumTache`, `NumConvention`, `Intitule`, `Quantite`, `PrixHT`) VALUES
+(1, 1, 'Livraison d\'un site web marchand', 1, 2000),
+(2, 2, 'Livraison d\'un site web Marchand', 1, 2000),
+(3, 2, 'Refonte de la base de données existante', 1, 2500);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
