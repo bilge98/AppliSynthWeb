@@ -1,6 +1,7 @@
 <?php
     require_once('../model/DaoCompte.php');
     require_once('../model/DtoCompte.php');
+
     session_start();
     var_dump($_SESSION);
 
