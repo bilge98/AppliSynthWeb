@@ -1,8 +1,13 @@
 
    <div id="layout_under_header">&nbsp;
     <form id="convention" method="POST"  action="../Controller/CreationconventionController.php" >
+       <input type="text" id="nomProjet" name="nomProjet" placeholder="Nom Projet" />
+       <br/><br/>
+       <br/>
         <div>
             <input type="text" id="clientname" name="nomClient" placeholder="Nom client" />
+            <input type="text" id="clientMail" name="clientMail" placeholder="Mail" />
+            <input type="text" id="clientTel" name="clientTel" placeholder="Tél" />
             <input type="number" id="siretnumber" name="numSiret" placeholder="N° Siret" />
         </div>
         <br/><br/>
@@ -52,7 +57,7 @@
 
         <div class="button_action">
             <div>
-                <button type="submit" id="valider">Valider</button>
+                <button type="submit" id="valider" name="valider">Valider</button>
             </div>
         </div>
 

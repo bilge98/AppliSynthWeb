@@ -3,6 +3,8 @@
     require_once('../model/DtoCompte.php');
     require_once('../model/DaoConvention.php');
     require_once('../model/DtoConvention.php');
+    require_once('../model/DaoClient.php');
+    require_once('../model/DtoClient.php');
     session_start();
     var_dump($_SESSION);
 
@@ -16,33 +18,16 @@
 
     #gere la creation du client dans la bdd
     if(isset($_POST['valider'])){
-        if(isset($_POST['nomClient']) && $_POST['nomClient']!=""){
-            if(isset($_POST['numSiret']) && $_POST['numSiret']!=""){
-                //numero de siret present
-                if(isset($_POST['numeroRue']) && $_POST['numeroRue']!=""){
-                    if(isset($_POST['rue']) && $_POST['rue']!=""){
-                        if(isset($_POST['codePostal']) && $_POST['codePostal']!=""){
-                            if(isset($_POST['codePostal']) && $_POST['codePostal']!=""){
-                                //creation dtoClient + insert bdd
-                                
-                                
-                            }                    
-                        }
-                    }                    
-                }
-            }else{
-                //Pas de numero de siret
-                if(isset($_POST['numeroRue']) && $_POST['numeroRue']!=""){
-                    if(isset($_POST['rue']) && $_POST['rue']!=""){
-                        if(isset($_POST['codePostal']) && $_POST['codePostal']!=""){
-                            if(isset($_POST['codePostal']) && $_POST['codePostal']!=""){
-                                //creation dtoClient + insert bdd
-                                
-                                
-                            }                    
-                        }
-                    }                    
-                } 
+        if(isset($_POST['nomProjet']) && $_POST['nomProjet']!=""){
+            if(isset($_POST['nomClient']) && $_POST['nomClient']!=""){
+                if(isset($_POST['clientTel']) && $_POST['clientTel']!=""){
+                //creation dtoClient + insert bdd
+                    $dtoClient = new DtoClient($_POST['nomClient'],$_POST['numeroRue'],$_POST['rue'],$_POST['codePostal'],$_POST['clientMail'],$_POST['clientTel'],$_POST['numSiret']);
+                    
+                    $daoClient = new DaoClient("localhost","junior","root","");
+                    $_SESSION['dtoClient'] = $dtoClient;
+                    $daoClient->insertClient($dtoClient);
+                }                
             }
         }
     }
@@ -78,28 +63,32 @@
     if(isset($_POST['accompte']) && $_POST['accompte']!=""){
         //avec accompte
         
-        $arrayDateDebut = date_parse($_POST['dateDebut']);
-        $arrayDateFin = date_parse($_POST['dateFin']);
-        if(isset($_POST['dateDebut']) && checkdate($arrayDateDebut['month'],$arrayDateDebut['day'],$arrayDateDebut['year'])){
-            if(isset($_POST['dateFin']) && checkdate($arrayDateFin['month'],$arrayDateFin['day'],$arrayDateFin['year'])){
-                
-                //verifier si au moins une DTOde chaque a etait crée
-                //insert dtoConvention 
-                var_dump($_POST['dateFin']);
-            } 
+        if(isset($_POST['dateDebut'])){
+            $arrayDateDebut = date_parse($_POST['dateDebut']);
+            if(checkdate($arrayDateDebut['month'],$arrayDateDebut['day'],$arrayDateDebut['year'])){
+                if(isset($_POST['dateFin'])){
+                    $arrayDateFin = date_parse($_POST['dateFin']);
+                    if(checkdate($arrayDateFin['month'],$arrayDateFin['day'],$arrayDateFin['year'])){
+                        var_dump($_POST['dateFin']);
+                    }
+                }
+            }
         }
     }else{
         //pas d'accompte
-        $arrayDateDebut = date_parse($_POST['dateDebut']);
-        $arrayDateFin = date_parse($_POST['dateFin']);
-        if(isset($_POST['dateDebut']) && checkdate($arrayDateDebut['month'],$arrayDateDebut['day'],$arrayDateDebut['year'])){
-            if(isset($_POST['dateFin']) && checkdate($arrayDateFin['month'],$arrayDateFin['day'],$arrayDateFin['year'])){
-                
-                //insert dtoConvention
-                var_dump($_POST['dateFin']);
-            } 
-        }
+        if(isset($_POST['dateDebut'])){
+            $arrayDateDebut = date_parse($_POST['dateDebut']);
+            if(checkdate($arrayDateDebut['month'],$arrayDateDebut['day'],$arrayDateDebut['year'])){
+                if(isset($_POST['dateFin'])){
+                    $arrayDateFin = date_parse($_POST['dateFin']);
+                    if(checkdate($arrayDateFin['month'],$arrayDateFin['day'],$arrayDateFin['year'])){
+                        var_dump($_POST['dateFin']);
+                    }
+                }
+            }
+        }            
     }
+    
     
 
     
