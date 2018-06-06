@@ -15,12 +15,13 @@ class DaoClient{
     private $Password;
     
     #constructeur
-    public function __construct($base, $hote, $UserName, $Password){
+    public function __construct($hote, $base, $UserName, $Password){
         try{
             $this->hote=$hote;
             $this->UserName=$UserName;
             $this->Password=$Password;
-            $this->bdd = new PDO('mysql:host='.$hote.';dbname='.base.';charset=utf8', $UserName, $Password);
+            $this->bdd = new PDO('mysql:host='.$hote.';dbname='.$base.';charset=utf8', $UserName, $Password);
+            $this->bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }catch (Exception $e){
             die('Erreur :' . $e->getMessage());
         }
@@ -35,7 +36,7 @@ class DaoClient{
         $req = $this->bdd->prepare($requete);
         $req->execute( array(
             't_NomClient' => $DtoClient->getNomClient(),
-            't_NumRue' => $DtoClient->getNumRue(),
+            't_NumRue' => intval($DtoClient->getNumRue()),
             't_NomRue' => $DtoClient->getNomRue(),
             't_CP' => $DtoClient->getCP(),
             't_Mail' => $DtoClient->getMail(),
@@ -43,10 +44,12 @@ class DaoClient{
             't_Siret' => $DtoClient->getSiret(),
         ));
         
+        $req->closeCursor();
         
+
         $DtoClient->setIdClient($donnes['IdClient']);
         
-        close($donnes);
+        
         
         return true;
     } 

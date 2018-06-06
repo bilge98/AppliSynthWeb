@@ -25,7 +25,7 @@ class DtoTache{
     #getters
     public function getNumTache(){return $this->NumTache;}
     public function getIntitule(){return $this->Intitule;}
-    public function getQuatntite{return $this->Quantite;}
+    public function getQuantite{return $this->Quantite;}
     public function getPrixHT(){return $this->PrixHT;}
     
     #setters

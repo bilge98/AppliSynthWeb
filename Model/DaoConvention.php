@@ -30,12 +30,13 @@ class DaoConvention
     //Fonction qui insere une nouvelle convention dans la BDD:
     public function insertTabConvention($DtoConvention){
         
-        $requete = 'INSERT INTO convention(NomProjet, DateDebut, DateFin, MontantHT,
-                             MontantTTC, Acompte, TVA; Signature, Commentaire) values(:t_NomProjet,:t_DateDebut,:t_DateFin, :t_MontantHT, :t_MontantTTC, :t_Acompte, :t_TVA, :t_Signature, :t_Commentaire);';
+        $requete = 'INSERT INTO convention(NomProjet, IdClient, DateDebut, DateFin, MontantHT,
+                             MontantTTC, Acompte, TVA; Signature, Commentaire) values(:t_NomProjet,:t_IdClient, :t_DateDebut,:t_DateFin, :t_MontantHT, :t_MontantTTC, :t_Acompte, :t_TVA, :t_Signature, :t_Commentaire);';
         
         $req = $this->bdd->prepare($requete);
         $req->execute( array(
             't_NomProjet' => $DtoConvention->getNomProjet(),
+            't_IdClient' => $DtoConvention->getIdClient(),
             't_DateDebut' => $DtoConvention->getDateDebut(),
             't_DateFin' => $DtoConvention->getDateFin(),
             't_MontantHT' => $DtoConvention->getMontantHT(),
@@ -46,11 +47,11 @@ class DaoConvention
             't_Commentaire' => $DtoConvention->getCommentaire()));
         
         
-        $requete2 = 'SELECT * FROM convention WHERE NomProjet=? and DateDebut=? and DateFin=? and MontantHT=? and MontantTTC=? and Acompte=? and TVA=? and Signature=? and Commentaire=?;';
+        $requete2 = 'SELECT * FROM convention WHERE NomProjet=? and IdClient=? and DateDebut=? and DateFin=? and MontantHT=? and MontantTTC=? and Acompte=? and TVA=? and Signature=? and Commentaire=?;';
         
         $req2 = $this->bdd->prepare($requete2);
         
-        $req2->execute(array($DtoConvention->getNomProjet(), $DtoConvention->getDateDebut(), $DtoConvention->getDateFin(), $DtoConvention->getMontantHT(), $DtoConvention->getMontantTTC(), $DtoConvention->getAcompte(), $DtoConvention->getTVA(), $DtoConvention->getSignature(), $DtoConvention->getCommentaire()));
+        $req2->execute(array($DtoConvention->getNomProjet(), $DtoConvention->getIdClient(), $DtoConvention->getDateDebut(), $DtoConvention->getDateFin(), $DtoConvention->getMontantHT(), $DtoConvention->getMontantTTC(), $DtoConvention->getAcompte(), $DtoConvention->getTVA(), $DtoConvention->getSignature(), $DtoConvention->getCommentaire()));
          
         $data=$req2->fetch();
                        
@@ -66,6 +67,7 @@ class DaoConvention
             echo'<tr>';
                 echo'<th>Numéro de convention</th>';
                 echo'<th>Nom du projet</th>';
+                echo'<th>Id Client</th>';
                 echo'<th>Date début</th>';
                 echo'<th>Date fin</th>';
                 echo'<th>Montant HT</th>';
@@ -83,6 +85,7 @@ class DaoConvention
             echo'</tr>';
                 echo '<td>'.$data['NumConvention'].'</td>';
                 echo '<td>'.$data['NomProjet'].'</td>';
+                echo '<td>'.$data['IdClient'].'</td>';
                 echo '<td>'.$data['DateDebut'].'</td>';
                 echo '<td>'.$data['DateFin'].'</td>';
                 echo '<td>'.$data['MontantHT'].'</td>';
@@ -118,6 +121,7 @@ class DaoConvention
             echo'<tr>';
                 echo'<th>Numéro de convention</th>';
                 echo'<th>Nom du projet</th>';
+                echo'<th>Id Client</th>';
                 echo'<th>Date début</th>';
                 echo'<th>Date fin</th>';
                 echo'<th>Montant HT</th>';
@@ -129,11 +133,12 @@ class DaoConvention
             echo'</tr>';
 
    
-        $requete = 'UPDATE convention SET NomProjet=:t_NomProjet, DateDebut=:t_DateDebut, DateFin=:t_DateFin, MontantHT=:t_MontantHT, Acompte=:t_Acompte, TVA=:t_TVA, Signature=:t_Signature, Commentaire=:t_Commentaire WHERE NumConvention=$DtoConvention->NumConvention;';
+        $requete = 'UPDATE convention SET NomProjet=:t_NomProjet, IdClient =:t_IdClient, DateDebut=:t_DateDebut, DateFin=:t_DateFin, MontantHT=:t_MontantHT, Acompte=:t_Acompte, TVA=:t_TVA, Signature=:t_Signature, Commentaire=:t_Commentaire WHERE NumConvention=$DtoConvention->NumConvention;';
 
         $reponse = $this->bdd->query($requete);
         $reponse->execute( array(
             't_NomProjet' => $DtoConvention->getNomProjet(),
+            't_IdClient' => $DtoConvention->getIdClient(),
             't_DateDebut' => $DtoConvention->getDateDebut(),
             't_DateFin' => $DtoConvention->getDateFin(),
             't_MontantHT' => $DtoConvention->getMontantHT(),
@@ -160,9 +165,11 @@ class DaoConvention
         
         $data = $req->fetch();
             
-        $DtoConvention = new DtoConvention ($data['NumConvention'],$data['NomProjet'],$data['DateDebut'],$data['DatFin'],$date['MontantHT'], $data=['MontantTTC'], $data=['Acompte'], $data=['TVA'], $data=['Signature'], $data=['Commentaire']);
+        $DtoConvention = new DtoConvention ($data['NomProjet'],$data['IdClient'],$data['DateDebut'],$data['DatFin'],$date['MontantHT'], $data=['MontantTTC'], $data=['Acompte'], $data=['TVA'], $data=['Signature'], $data=['Commentaire']);
         
         $req->closeCursor();
+        
+        $DtoConvention->setIdClient($data['IdClient']);
         
         return $DtoConvention;
     }  
@@ -174,6 +181,7 @@ class DaoConvention
             echo'<tr>';
                 echo'<th>Numéro de convention</th>';
                 echo'<th>Nom du projet</th>';
+                echo'<th>Id Client</th>';
                 echo'<th>Date début</th>';
                 echo'<th>Date fin</th>';
                 echo'<th>Montant HT</th>';
@@ -193,6 +201,7 @@ class DaoConvention
             echo'</tr>';
                 echo '<td>'.$data['NumConvention'].'</td>';
                 echo '<td>'.$data['NomProjet'].'</td>';
+                echo '<td>'.$data['IdClient'].'</td>';
                 echo '<td>'.$data['DateDebut'].'</td>';
                 echo '<td>'.$data['DateFin'].'</td>';
                 echo '<td>'.$data['MontantHT'].'</td>';
@@ -217,6 +226,7 @@ class DaoConvention
         echo'<table>';
                 echo'<th>Numéro de convention</th>';
                 echo'<th>Nom du projet</th>';
+                echo'<th>Id Client</th>';
                 echo'<th>Date début</th>';
                 echo'<th>Date fin</th>';
                 echo'<th>Montant HT</th>';
@@ -234,6 +244,7 @@ class DaoConvention
             echo'<tr>';
                 echo '<td>'.$data['NumConvention'].'</td>';
                 echo '<td>'.$data['NomProjet'].'</td>';
+                echo '<td>'.$data['IdClient'].'</td>';
                 echo '<td>'.$data['DateDebut'].'</td>';
                 echo '<td>'.$data['DateFin'].'</td>';
                 echo '<td>'.$data['MontantHT'].'</td>';
