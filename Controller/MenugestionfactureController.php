@@ -11,4 +11,6 @@
         header('Location: ./FrontController.php');
     }
 
+    if()
+
     include("../View/layout.php");

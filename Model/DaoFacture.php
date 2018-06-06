@@ -34,7 +34,7 @@ class Facture{
             't_DateFacture' => $DtoFacture->getDateFacture(),
             't_MontantHT' => $DtoFacture->getMontantHT(),
             't_MontantTTC' => $DtoFacture->getMontantTTC(),
-            't_Payee' => $DtoFacture->getPayee())),
+            't_Payee' => $DtoFacture->getPayee()));
           
         
         //Requête pour récupérer le numéro de la Facture
@@ -71,8 +71,9 @@ class Facture{
             echo '<td>'.$data['MontantTTC'].'</td>';
             echo '<td>'.$data['Payee'].'</td>';
             echo '<td><button name="button">Accéder à ma facture</button></td>';
-            echo '<td><button name="button">Impr'
+            echo '<td><button name="button">Imprimer ma facture </button></td>';
         }
+
         $reponse->closeCursor();
         echo'</table>';
         

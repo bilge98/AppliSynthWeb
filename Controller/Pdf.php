@@ -1,6 +1,13 @@
 <?php
 // importe le fichier
-require('facturePDF.php');
+ session_start();
+require('../model/DtoFacture.php');
+require('../model/DaoConvention.php');
+require('../model/DtoConvention.php');
+require('../model/DaoClient.php');
+require('../model/DtoClient.php');
+
+require('../Model/DtofacturePDF.php');
 
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -11,7 +18,9 @@ require('facturePDF.php');
 $adresse = "Junior Entreprise\n92 avenue Biels Nohr \n12321 Billeurvanne\n\ncontact@je.fr\n(+33) 3 45 67 89 12";
 
 // adresse du client
-$client = $_SESSION['DtoClient']->getNomClient();
+$daoClient = new DaoClient("localhost","junior","root","");
+$_SESSION['dtoClient'] = $dtoClient;
+$client = $daoClient->getNomClient();
 
 // pied de page
 $piedPage1 = "Junior Entreprise - 92 Boulevard Biels Nohr - Billeurvanne contact@je.fr - (+33) 3 45 67 89 12";
@@ -62,17 +71,17 @@ $pdf->elementAdd('', 'traitBas', 'footer');
 //	- date
 //	- texte affiché avant le numéro de page
 //
-$pdf->initFacture("Facture".getNumConvention, "Lyon le 07/06/2018", "Page ");
+$pdf->initFacture($_SESSION['DtoFacture']->getNumFacture(),$_SESSION['DtoFacture']-> getDateFacture(), "Lyon ".$_SESSION['DtoFacture']->getDateFacture(), "Page ");
 
 
-$pdf->productAdd(array($data['NomProjet'], $_SESSION['DtoConvention']->getNomProjet(), '7', '70.00'));
+$pdf->productAdd($_SESSION['DtoConvention']->getNomProjet(), $_SESSION['DtoConvention']->getNomProjet(), '7', '70.00');
 
 // ligne des totaux
 // gabarit : template['total']
 //
 // même principe que pour les lignes de produits.
 // vous pouvez ajouter autant de ligne que vous souhaitez.
-$pdf->totalAdd(array('Total HT', $_SESSION['DtoFacture']->getMontantHT());
+$pdf->totalAdd(array('Total HT', $_SESSION['DtoFacture']->getMontantHT() ));
 $pdf->totalAdd(array('TVA', $_SESSION['DtoConvention']->getMontantTVA()));
 $pdf->totalAdd(array('Total TTC', $_SESSION['DtoConvention']->getMontantTVA() + $_SESSION['DtoFacture']->getMontantHT()));
 

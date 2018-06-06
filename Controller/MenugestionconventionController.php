@@ -19,15 +19,7 @@
     }
     
 
-    
-    
-/*
-    if(isset($_POST['btnModifierEditerConvention'])){
-        $page = "consultermodifierediterconvention";
-    }
-    
-   */ 
-
+     
    
 
     include("../View/layout.php");
