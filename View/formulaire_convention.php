@@ -54,21 +54,21 @@
             <div>
                 <button type="submit" id="valider">Valider</button>
             </div>
-            
-            <div>
-                <form id="retour" method="POST" action="../Controller/MenugestionconventionController.php">
-                    <button type="submit" name="btnRetour">Retour</button>
-                </form>
-            </div>
-            <div>
-                <form id="deconnexion" method="POST" action="../Controller/FrontController.php">
-                    <button type="submit" name="btnDeconnexion">Déconnexion</button>
-                </form>
-            </div>
-            
         </div>
 
     </form>
+    
+    <div>
+        <form id="retour" method="POST" action="../Controller/MenugestionconventionController.php">
+            <button type="submit" name="btnRetour">Retour</button>
+        </form>
+    </div>
+    <div>
+        <form id="deconnexion" method="POST" action="../Controller/FrontController.php">
+            <button type="submit" name="btnDeconnexion">Déconnexion</button>
+        </form>
+    </div>
+    
     <script src="../Controller/script_ajoutCollab.js"></script>
     <script src="../Controller/script_ajoutTache.js"></script> 
     <script src="../Controller/script_calculPrixHT.js"></script> 

@@ -75,7 +75,15 @@
     }
 
   
-
+    if(isset($_POST['accompte']) && $_POST['accompte']!=""){
+        //avec accompte
+        var_dump($_POST['dateDebut']);
+        if(isset($_POST['dateDebut']) && checkdate($_POST['dateDebut'])){
+            var_dump($_POST['dateDebut']);
+        }
+    }else{
+        //pas d'accompte
+    }
     
 
     
