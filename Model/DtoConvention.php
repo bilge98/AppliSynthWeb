@@ -10,6 +10,7 @@ class DtoConvention{
     #attributs
     private $NumConvention;
     private $NomProjet;
+    private $IdClient;
     private $DateDebut;
     private $DateFin;
     private $MontantHT;
@@ -35,10 +36,11 @@ class DtoConvention{
         $this->Commentaire = $Commentaire;
     }
     */
-    public function construct($NomProjet, $DateDebut,
+    public function construct($NomProjet, $IdClient, $DateDebut,
                                 $DateFin, $MontantHT, $MontantTTC, 
                                 $Acompte, $TVA, $Signature, $Commentaire){
         $this->NomProjet = $NomProjet;
+        $this->IdClient = $IdClient;
         $this->DateDebut = $DateDebut;
         $this->DateFin = $DateFin;
         $this->MontantHT = $MontantHT;
@@ -52,6 +54,7 @@ class DtoConvention{
     #getters
     public function getNumConvention(){return $this->NumConvention;}
     public function getNomProjet(){return $this->NomProjet;}
+    public function getIdClient(){return $this->IdClient;}
     public function getDateDebut(){return $this->DateDebut;}
     public function getDateFin(){return $this->DateFin;}
     public function getMontantHT(){return $this->MontantHT;}
@@ -64,6 +67,7 @@ class DtoConvention{
     #setters
     public function setNumConvention($NumConvention){$this->NumConvention = $NumConvention;}
     public function setNomProjet($NomProjet){$this->NomProjet;}
+    public function setIdClient($IdClient){$this->IdClient;}
     public function setDateDebut($DateDebut){$this->DateDebut;}
     public function setDateFin($DateFin){$this->DateFin;}
     public function setMontantHT($MontantHT){$this->MontantHT;}
