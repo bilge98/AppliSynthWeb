@@ -77,12 +77,28 @@
   
     if(isset($_POST['accompte']) && $_POST['accompte']!=""){
         //avec accompte
-        var_dump($_POST['dateDebut']);
-        if(isset($_POST['dateDebut']) && checkdate($_POST['dateDebut'])){
-            var_dump($_POST['dateDebut']);
+        
+        $arrayDateDebut = date_parse($_POST['dateDebut']);
+        $arrayDateFin = date_parse($_POST['dateFin']);
+        if(isset($_POST['dateDebut']) && checkdate($arrayDateDebut['month'],$arrayDateDebut['day'],$arrayDateDebut['year'])){
+            if(isset($_POST['dateFin']) && checkdate($arrayDateFin['month'],$arrayDateFin['day'],$arrayDateFin['year'])){
+                
+                //verifier si au moins une DTOde chaque a etait crée
+                //insert dtoConvention 
+                var_dump($_POST['dateFin']);
+            } 
         }
     }else{
         //pas d'accompte
+        $arrayDateDebut = date_parse($_POST['dateDebut']);
+        $arrayDateFin = date_parse($_POST['dateFin']);
+        if(isset($_POST['dateDebut']) && checkdate($arrayDateDebut['month'],$arrayDateDebut['day'],$arrayDateDebut['year'])){
+            if(isset($_POST['dateFin']) && checkdate($arrayDateFin['month'],$arrayDateFin['day'],$arrayDateFin['year'])){
+                
+                //insert dtoConvention
+                var_dump($_POST['dateFin']);
+            } 
+        }
     }
     
 

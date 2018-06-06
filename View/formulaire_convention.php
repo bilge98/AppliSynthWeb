@@ -40,8 +40,8 @@
 
         <div>
           <input type="number" id="accompte" name="accompte" placeholder="Accompte" />
-           Date début : <input type="date" id="datedebut" name="dateDebut" placeholder="Date début" />
-           Date fin : <input type="date" id="totalttc" name="DateFin" placeholder="Date fin" />
+           Date début : <input type="date" id="datedebut" name="dateDebut" min="<?php echo date('Y-m-d');?>" placeholder="Date début" />
+           Date fin : <input type="date" id="dateFin" name="dateFin" min="<?php echo date('Y-m-d');?>" placeholder="Date fin" />
         </div>
         <br/><br/>
         <div>
