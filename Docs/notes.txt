@@ -1,0 +1,8 @@
+presentation du projet
+maquette
+conception : MCD
+Base de données
+implémentation
+éléments importants nécessaires à détailler pour la bonne compréhension du projet
+
+fonctionnalités
